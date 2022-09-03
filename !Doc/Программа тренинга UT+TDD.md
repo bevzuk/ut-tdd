@@ -4,14 +4,8 @@
   - [1.1. TODO:](#11-todo)
   - [1.2. Links](#12-links)
   - [1.3. Подготовка](#13-подготовка)
-  - [1.4. Начало](#14-начало)
-    - [1.4.1. Обзор тренинга](#141-обзор-тренинга)
-    - [1.4.2. Сбор проблем](#142-сбор-проблем)
-    - [1.4.3. Разбивка по парам](#143-разбивка-по-парам)
+  - [Структура](#структура)
   - [1.5. Unit Testing](#15-unit-testing)
-    - [1.5.1. Правда или ложь?](#151-правда-или-ложь)
-    - [Для чего нужны тесты?](#для-чего-нужны-тесты)
-    - [Упражнение 1. Напишите тест](#упражнение-1-напишите-тест)
   - [1.6. Ретроспектива](#16-ретроспектива)
   - [1.7. Проверка знаний после первого дня](#17-проверка-знаний-после-первого-дня)
   - [1.8. План на День 2](#18-план-на-день-2)
@@ -48,8 +42,9 @@
 * [ ] Проработать первый блок
 
 ## 1.2. Links
-* https://github.com/bevzuk/ut-tdd
-* https://photos.app.goo.gl/vVmrkP3rFsQvY37a7
+* (GitHub репозиторий)[https://github.com/bevzuk/ut-tdd]
+* (Фото тренинга в Самаре)[https://photos.app.goo.gl/vVmrkP3rFsQvY37a7]
+* (Фото тренинга в Райфе)[https://disk.yandex.ru/d/150AIWfx3GU3BP]
 
 ## 1.3. Подготовка
 
@@ -62,46 +57,29 @@ git clone https://github.com/bevzuk/ut-tdd.git
 git checkout -b <your branch>
 ```
 
-## 1.4. Начало
-
-### 1.4.1. Обзор тренинга
-* Темы, которые будут рассмотрены на тренинге:
-* Знакомство
-  * Как тебя зовут?
-  * Какая роль в команде
-* Напишите свое имя на беджике
-
-### 1.4.2. Сбор проблем
-* Какие проблемы в вашей команде вы хотите решить при помощи модульного тестирования или TDD?
-
-### 1.4.3. Разбивка по парам
-Во время тренинга мы будем работать в парах. Выберите себе напарника, с которым вам будет комфортно работать.
-
+## Структура
+1. [Начало](01.Начало.md)
+2. [Парное программирование](02.Парное%20программирование.md)
+3. [Unit Test](03.Unit%20Test.md)
+4. [Fixture](04.Fixture.md)
+5. [Stub/Mock/Spy](05.Fake.md)
+6. [3 столба тестирования; Паттерны разработки модульных тестов](06.Patterns%20%26%20Antipatterns.md)
+7. [Тестирование legacy кода](07.Legacy.md)
+8. [Тестирование UI](08.Testing%20UI.md)
+9. [Domain Specific Language (DSL)](09.DSL.md)
+10. [Behaviour Driven Development (BDD)](10.BDD.md)
+11. [Test Driven Development (TDD)](11.TDD.md)
+12. [Transformation Priority Premise (TPP)](12.Transformation%20Priority%20Premise.md)
+13. [Object Calisthenics](13.Object%20Calisthenics.md)
+14. [Шаблоны красной и зеленой полосы](14.Шаблоны%20красной%20и%20зеленой%20полосы.md)
+15. [Принципы разработки](15.Принципы%20разработки.md)
+16. [Паттерны тестируемого дизайна](16.Паттерны%20тестируемого%20дизайна.md)
+17. [Модель принятия решений](17.Модель%20принятия%20решений.md)
+18. [Завершение](18.Завершение.md)
 
 ## 1.5. Unit Testing
 
-### 1.5.1. Правда или ложь?
-Правда или ложь в утверждениях? Почему?
--   Идеальный юнит тест состоит из 3 строк
--   Юнит тесты должны писать тестировщики
--   Юнит тесты могут ходить несколько часов, если они тестируют
-    приложение целиком
--   Перед коммитом нужно запускать весь набор юнит тестов
--   Можно вечером закоммитить код с падающим тестом, чтобы завтра
-    было понятно, с чего начать работу
--   Юнит тесты не должны покрывать логику UI
--   Юнит тесты увеличивают затраты на разработку
--   Юнит тестами можно пожертвовать ради скорости
--   Решение о том, покрывать код тестами или нет, принимает бизнес
--   Тесты – лучшая документация
--   Тесты показывают слабые места в дизайне
--   Самый простой способ починить красный тест – удалить его
--   Если удалить тест нельзя, то можно заигнорить
--   Тестировать можно не только код, но и конфигурацию, окружение, архитектуру, установочный пакет
 
-### Для чего нужны тесты?
--   Тестирование как способ обеспечения качества продукта
-    -   Атрибуты качества
     -   Модель принятия решений
         -   Бизнес модель
             -   Устойчивый или развивающийся бизнес?
@@ -135,106 +113,7 @@ git checkout -b <your branch>
         -   Модель реализации
             -   Как написать код
     -   https://photos.google.com/share/AF1QipM4blkk7aW1gCjKYsEJj9SngPxhdPRNcHanggVbgCugKyTkRUGb0GnsyxTu_I1Bqg/photo/AF1QipPxNqiYUBSl9BEdD1GIpQNt6ou5FXb01At_gOB8?key=TUNISk5qSkVvaHdia1p0aXNSSHN0YTByMzl0cEp3 
--   Виды тестов
-    -   Что такое Unit?
-    -   UT
-    -   IT
-    -   E2ET
-    -   
 
--   Модульное тестирование
-    -   Определение модульного теста
-        -   SUT = Unit
-            -   Определение модуля и возможные виды модулей
-        -   CUT
-        -   UoW
-            -   Больше UoW → Заметнее результат → Поддерживаемые
-                тесты
-            -   Остановки на пути к станции назначения
-        -   Благонадежный
-        -   Поддерживаемый
-        -   Читабельный
-    -   Что тестировать
-        -   Возвращаемое значение
-        -   Изменение состояния
-        -   Внешний вызов
-    -   Цели и задачи
-    -   Отличие от отладки
-    -   Понятие контракта по Б. Мейеру
-    -   Граничные условия
-    -   Тест = спецификация
-    -   Тесты и логика
-    -   Разделение юнит и интеграционных тестов
--   Хороший юнит тест  
-    -   It should be automated and repeatable
-    -   It should be easy to implement
-    -   It should be relevant tomorrow
-    -   Anyone should be able to run it at the push of a button
-    -   It should run quickly
-    -   It should be consistent in its results (it always returns the
-        same result if you don’t change anything between runs)
-    -   It should have full control of the unit under test
-    -   It should be fully isolated (runs independently of other tests)
-    -   When it fails, it should be easy to detect what was expected and
-        determine how to pinpoint the problem
-    -   Checkpoint questions
-
-        -   Can I run and get results from a unit test I wrote two weeks
-            or months or years ago?
-            -   No = regression bugs.
-        -   Can any member of my team run and get results from unit
-            tests I wrote two months ago?
-            -   No = breaking someone else's code
-            -   Legacy systems
-            -   Legacy code = code that works
-            -   Legacy code = code that has no tests (M. Feathers)
-        -   Can I run all the unit tests I’ve written in no more than a
-            few minutes?
-            -   No = don't get feedback quickly
-        -   Can I run all the unit tests I’ve written at the push of a
-            button?
-            -   No = not automated =&gt; avoid running
-            -   Developers has more important things to do, like writing
-                more features into the system, than configuring
-                connection strings for tests
-        -   Can I write a basic test in no more than a few minutes?
-            -   No = takes time, loose focus
-            -   Big test =&gt; less logic coverage
-
-    -   No = you are not writing unit tests. What was I doing?
-        Integration tests.
-
--   Integration test
-    -   Definintion
-        -   “Integration testing is testing a unit of work without
-            having full control over all of it and using one or more of
-            its real dependencies, such as time, network, database,
-            threads, random number generators, and so on.”
-
-    -   Not fast
-    -   Not consistent
-    -   Real file system
-    -   Real DB
-    -   DateTime
-    -   Testing too many things at once
-    -   Example: Car movement is integral result of multiple subsystems
-        working together
-    -   Integration test uses real dependencies; unit test isolates unit
-        of work from its dependencies
--   Определение
-    -   A unit test is an automated piece of code that invokes the unit
-        of work being tested, and then checks some assumptions about a
-        single end result of that unit. A unit test is almost always
-        written using a unit testing framework. It can be written easily
-        and runs quickly. It’s trustworthy, readable, and maintainable.
-        It’s consistent in its results as long as production code hasn’t
-        changed.
-
-### Упражнение 1. Напишите тест
-* Задание: Напишите самый лучший тест, который сможете, на код, размещенный в папке Unit-1.
-* Время: 15 минут
-* Дебриф: Смотрим тесты, обсуждаем соблюдаются ли признаки хорошего теста.  
-Обращаем особое внимание на структуру и наименование: понятен ли смысл теста из его названия.
 
 -   Покрытие кода тестами 
     -   Понятие трасс выполнения (flow)
