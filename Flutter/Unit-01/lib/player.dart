@@ -7,6 +7,7 @@ import 'exceptions.dart';
 
 class Player {
   RollDiceGame? _currentGame;
+  Bet? _currentBet;
   Chip _availableChips = Chip(0);
 
   bool isInGame() => _currentGame != null;
@@ -32,6 +33,14 @@ class Player {
   has(Chip chips) => _availableChips >= chips;
 
   bet(Bet bet) {
-    throw NotImplementedException();
+    _currentBet = bet;
   }
+
+  Bet? getBet() {
+    return _currentBet;
+  }
+
+  void win(Chip chips) => _availableChips += chips;
+
+  void lose(Chip chips) => _availableChips -= chips;
 }

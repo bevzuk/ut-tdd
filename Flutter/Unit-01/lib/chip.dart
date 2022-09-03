@@ -14,4 +14,16 @@ class Chip {
   operator <= (Chip another) {
     return _amount <= another._amount;
   }
+
+  operator + (Chip another) {
+    return Chip(_amount + another._amount);
+  }
+
+  operator - (Chip another) {
+    return Chip(_amount - another._amount);
+  }
+
+  operator * (int multiplier) {
+    return Chip(_amount * multiplier);
+  }
 }
