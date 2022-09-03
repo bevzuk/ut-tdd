@@ -130,52 +130,6 @@ git checkout -b <your branch>
     -   Подход AAA
     -   Подход GWT
 
-<!-- -->
-
--   Наименование теста
-    -   When.
-        -   WhenAuthorizeUser
-
-<!-- -->
-
--   -   -   -   AdminCanLogin
-            -   HackerCanNotLogin
-
-        -   WhenLoadMovies
-            -   AdminCanSeeAllMovies Children
-            -   MustNotNotSeeRestrictedMovies 
-
-    -   .
-        -   RegularMovieWith18RateIs
-            -   RestrictedForUser
-            -   AvailableForAdmin
-        -   SeriesMovieWith18RateIs
-            -   AvailableForChild
-            -   AvailableForAdmin
-    -   &lt;Assert&gt;.&lt;Arrange&gt;
-
-<!-- -->
-
--   -   -   RegularMovieIsAvailableFor
-            -   Admin
-            -   UserOlder14Years
-        -   NewReleaseWith18RestrictionIsNotAvailableFor
-            -   UserYounger14Years
-
-    -   &lt;ClassName&gt;Should.&lt;Assert&gt;
-        -   AuthenticationServiceShould
-            -   StoreLoggedUserName
-        -   LoginPageShould
-            -   RedirectToDefaultPage
-        -   DefaultPageShould
-            -   ShowSalesReportToAdmin
-    -   &lt;ClassNameTests&gt;.&lt;Act&gt;\_&lt;Arrange&gt;\_&lt;Assert&gt;
-        -   DefaultPageTests
-            -   LoadMovie\_Admin\_ShowAll
-            -   LoadMovie\_UserElder18\_ShowAll
-            -   LoadMovie\_UserYounger18\_HideRestrictedContent
-
-<!-- -->
 
 -   Роль фикстуры
     -   Фреймворк модульного тестирования 
@@ -271,21 +225,6 @@ git checkout -b <your branch>
 
   
 
-1.  ### Упражнение. Пишем тесты.
-
-<!-- -->
-
-1.  -   Задача: Написать хорошие тесты
-        -   Игрок может присоединиться к игре
-        -   Игрок может купить фишки
-        -   Игрок может сделать ставку
-        -   Игрок может выйти из игры
-    -   Обращаем внимание на
-        -   Наименование теста
-        -   Структуру теста (AAA)
-        -   Лаконичность и выразительность теста
-        -   Тестовые данные  
-              
 
 2.  ### Упражнение. Осваиваем фикстуру
 
