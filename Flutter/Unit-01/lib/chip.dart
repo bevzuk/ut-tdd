@@ -26,4 +26,15 @@ class Chip {
   operator * (int multiplier) {
     return Chip(_amount * multiplier);
   }
+
+  @override
+  String toString() => 'Chip(amount: $_amount)';
+
+  @override
+  bool operator ==(covariant Chip other) {
+    return _amount == other._amount;
+  }
+
+  @override
+  int get hashCode => _amount.hashCode;
 }

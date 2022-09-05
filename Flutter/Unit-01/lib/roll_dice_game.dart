@@ -1,6 +1,6 @@
 library casino;
 
-import 'dice.dart';
+import 'dart:math';
 import 'player.dart';
 import 'exceptions.dart';
 
@@ -16,8 +16,9 @@ class RollDiceGame {
     _players.remove(player);
   }
 
-  play(Dice dice) {
-    var winningScore = dice.roll();
+  play() {
+    final random = Random();
+    var winningScore = random.nextInt(6) + 1;
 
     for (var player in _players) {
       var bet = player.getBet();
