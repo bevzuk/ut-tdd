@@ -41,40 +41,6 @@ git checkout -b <your branch>
 ## 1.5. Unit Testing
 
 
-    -   Модель принятия решений
-        -   Бизнес модель
-            -   Устойчивый или развивающийся бизнес?
-            -   Поиск или масштабирование?
-            -   Новый продукт или копия существующего?
-            -   Инвестиции или собственные средства?
-        -   Модель процессов
-            -   Как организованы команды?
-            -   Как принимаются решения?
-            -   Кто несет ответственность?
-            -   Какие циклы обратной связи?
-        -   Модель требований
-            -   Функциональные
-            -   НФТ
-                * Usability
-                * Reliability
-                * Availability
-                * Portability
-                * Testability
-                * Scalability
-                * Flexibility
-                * Reusability
-                * Maintainability
-                * Supportability
-                * Interoperability
-                * Performance
-                * Security
-        -   Модель дизайна
-            -   Архитектура
-            -   Дизайн классов
-        -   Модель реализации
-            -   Как написать код
-    -   https://photos.google.com/share/AF1QipM4blkk7aW1gCjKYsEJj9SngPxhdPRNcHanggVbgCugKyTkRUGb0GnsyxTu_I1Bqg/photo/AF1QipPxNqiYUBSl9BEdD1GIpQNt6ou5FXb01At_gOB8?key=TUNISk5qSkVvaHdia1p0aXNSSHN0YTByMzl0cEp3 
-
 
 
 ## Непонятные блоки
@@ -148,75 +114,6 @@ git checkout -b <your branch>
 ## 3.3. Программа тренинга
 
 
-
-Тестабельный дизайн
-
--   Метрика Coupling
-    -   Changes in one forces change in another
-
-    -   Example: audio system analog -&gt; digital
-
--   Метрика Cohesion
-    -   Whether its responsibilities form a meaningful unit
-        -   Example: class that parses both dates and URLs
-        -   Machine that washes both clothes and dishes
-        -   Class that parses only the punctuation of URL doesn't
-            represent a whole concept either
-
-Проектирование удобного и поддерживаемого API через тесты
-
--   ООП - про общение
-
-Шаблоны тестабельного дизайна
-
--   Ходячий скелет
-    -   Лунная программа
--   Разделение ответственностей
-    -   Причина для изменения
-    -   Разделение создания и логики
--   Связи
-    -   Зависимость
-        -   Конструктор
-    -   Оповещение
-    -   Настройка  
-        -   Strategy
-        -   TableCellRenderer (RGB -&gt; HUE)
-    -   Пример: лог - зависимость или оповещение?
-    -   Интерфейсы
--   Скрывайте сложность
-    -   Часы
--   Независимость от контекста выполнения
-    -   Постоянное - в конструктор
-    -   Транзиентное - в параметр
--   Immutable objects (Value type)
-    -   Контроль типов
-        -   Mars Climate Orbiter (ft/m)
-    -   3 способа
-        -   Breaking out
-            -   Разделение
-            -   Код - это эксперимент
-        -   Budding off
-            -   Выделение новой сущности
-        -   Bundling up
-            -   Композиция используемых вместе сущностей
--   Replace ifs/switch with polymorphism
-    -   1 + 2 \* 3
-    -   Behavior changes based on state
-    -   Parallel conditionals are in multiple places 
--   Фабричный метод
--   Шаблон ServiceLocator
-    -   Недостатки
--   Шаблон DI
-    -   Конструктор
-        -   Постоянная
-        -   Жизненный цикл &gt;
-    -   Свойство
-    -   Параметр
-        -   Жизненный цикл &lt;
--   Немутабельные объекты
--   Команда / запрос
--   Накопление в параметре
-
 Преимущества и недостатки TDD
 
 -   Самостоятельное обсуждение
@@ -254,39 +151,12 @@ git checkout -b <your branch>
 
 ## 3.5. Упражнения
 
-
-
-
 ### 3.5.5. Упражнение 5. Рулетка
-
 -   Я, как казино, могу предложить игрокам сыграть в рулетку
 -   Я, как игра, выбрасываю числа от 0 до 36 с равной вероятностью
 -   Я, как игрок, могу делать ставки на чет/нечет. Выигрышный
     коэффициент = 1
 -   Я, как игрок, теряю половину ставки при выпадении 0
-
-## 3.6. Книги
-
-### 3.6.1. Вообще
-
-  
-
-![](https://upload.wikimedia.org/wikipedia/en/thumb/8/8f/The_pragmatic_programmer.jpg/220px-The_pragmatic_programmer.jpg){height="250"}[![](https://images-na.ssl-images-amazon.com/images/I/41TINACY3hL._SX384_BO1,204,203,200_.jpg){height="250"}](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)[![](https://images-na.ssl-images-amazon.com/images/I/515iO%2B-PRUL._SX408_BO1,204,203,200_.jpg){height="250"}](https://www.amazon.com/Code-Complete-Practical-Handbook-Construction/dp/0735619670/ref=pd_sbs_14_img_0?_encoding=UTF8&psc=1&refRID=78JWG45NV0Y7PSFAS0VK)
-
-### 3.6.2. Юнит тестирование
-
-![](http://a.fsdn.com/sd/firehose/009/463/558-1.png){width="199"
-height="250"}![](http://xunitpatterns.com/Cover-Small.gif){height="250"}
-
-### 3.6.3. TDD
-
-![](http://vig-fp.prenhall.com/bigcovers/0321146530.jpg){height="250"}
-
-  
-
-### 3.6.4. Тестируемый дизайн
-
-![](http://www.informit.com/ShowCover.aspx?isbn=0131177052){height="250"}![](http://www.informit.com/ShowCover.aspx?isbn=9780321125217&type=f){height="250"}![](http://www.informit.com/ShowCover.aspx?isbn=9780321127426&type=f){height="250"}
 
 ## 3.7. Какие навыки получат участники?
 
