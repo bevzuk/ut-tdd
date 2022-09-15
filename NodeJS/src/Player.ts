@@ -1,27 +1,26 @@
 import { RollDiceGame } from "./RollDiceGame";
 
 export class Player {
-    private _isInGame = false;
-    private _game: RollDiceGame;
+    private _currentGame: RollDiceGame;
 
     enter(game: RollDiceGame) {
-        if (this._isInGame) {
+        if (this.isInGame()) {
             throw new TypeError("Unable to enter another game");
         }
         game.join(this);
-        this._game = game;
-        this._isInGame = true;
+        this._currentGame = game;
     }
 
     leaveGame() {
-        if (!this._isInGame) {
+        if (!this.isInGame()) {
             throw new TypeError("Unable to leave the game before entering");
         }
-        this._game.leave(this);        
-        this._isInGame = false;
+        this._currentGame.leave(this);
+        this._currentGame = null;    
     }
 
     isInGame(): boolean {
-        return this._isInGame
+        if (this._currentGame) return true;
+        else return false;
     }
 }
