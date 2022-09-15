@@ -45,4 +45,45 @@ describe('Когда игрок играет в кости', function() {
 
         expect(() => player.enter(anotherGame)).to.throw(TypeError, "Unable to enter another game");
     });
+
+    it('игра не позволяет войти более чем 6 игрокам', function() {
+        let game = new RollDiceGame();
+        let player1 = new Player();
+        let player2 = new Player();
+        let player3 = new Player();
+        let player4 = new Player();
+        let player5 = new Player();
+        let player6 = new Player();
+        let player7 = new Player();
+
+        player1.enter(game);
+        player2.enter(game);
+        player3.enter(game);
+        player4.enter(game);
+        player5.enter(game);
+        player6.enter(game);
+
+        expect(() => player7.enter(game)).to.throw(TypeError, "Game can not accept more than 6 players");
+    });
+
+    it('игра позволяет войти 7-му игроку, если освободилось место', function() {
+        let game = new RollDiceGame();
+        let player1 = new Player();
+        let player2 = new Player();
+        let player3 = new Player();
+        let player4 = new Player();
+        let player5 = new Player();
+        let player6 = new Player();
+        let player7 = new Player();
+
+        player1.enter(game);
+        player2.enter(game);
+        player3.enter(game);
+        player4.enter(game);
+        player5.enter(game);
+        player6.enter(game);
+        player1.leaveGame();
+
+        expect(() => player7.enter(game)).to.not.throw();
+    });
 });
