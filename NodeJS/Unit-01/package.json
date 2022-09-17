@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Unit testing & TDD workshop on how to test node.js + typescript with mocha and chai",
   "scripts": {
-    "test": "mocha --config Unit-01/test/runners/mocha/.mocharc.jsonc"
+    "test": "mocha --config test/runners/mocha/.mocharc.jsonc"
   },
   "author": "Anton Bevzuk",
   "license": "ISC",
