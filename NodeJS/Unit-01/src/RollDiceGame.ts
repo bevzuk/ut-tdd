@@ -1,11 +1,12 @@
 import { Player } from "./Player";
+import { TooManyPlayersError } from "./TooManyPlayersError";
 
 export class RollDiceGame {
     private _players: Player[] = [];
 
     addPlayer(player: Player) {
         if (this._players.length == 6) {
-            throw new TypeError("Game can not accept more than 6 players");
+            throw new TooManyPlayersError();
         }
         this._players.push(player);
     }
