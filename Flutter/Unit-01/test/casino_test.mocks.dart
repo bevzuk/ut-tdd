@@ -3,9 +3,7 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:math' as _i2;
-
-import 'package:casino/dice.dart' as _i3;
+import 'package:casino/dice.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -19,32 +17,14 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeRandom_0 extends _i1.SmartFake implements _i2.Random {
-  _FakeRandom_0(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
 /// A class which mocks [Dice].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDice extends _i1.Mock implements _i3.Dice {
+class MockDice extends _i1.Mock implements _i2.Dice {
   MockDice() {
     _i1.throwOnMissingStub(this);
   }
 
-  @override
-  _i2.Random get random => (super.noSuchMethod(
-        Invocation.getter(#random),
-        returnValue: _FakeRandom_0(
-          this,
-          Invocation.getter(#random),
-        ),
-      ) as _i2.Random);
   @override
   int roll() => (super.noSuchMethod(
         Invocation.method(
