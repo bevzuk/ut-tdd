@@ -1,32 +1,60 @@
+import 'dart:math';
+
+import 'package:casino/bet.dart';
 import 'package:casino/chip.dart';
 import 'package:casino/player.dart';
 import 'package:casino/roll_dice_game.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group('Test 1', () {
-    test('equals 1', () {
-      expect(1, 1);
+  group("ChipTest", () {
+    test('TwoIsGreaterOrEqualToOne', () {
+      expect(Chip(2) >= Chip(1), true);
     });
-    test('less operator', () {
-      expect(Chip(2)>=Chip(1), true);
+
+    test('TwoIsLessOrEqualToThree', () {
+      expect(Chip(2) <= Chip(3), true);
     });
-    test('player join/leave game', () {
-      Player player = Player();
-      player.join(RollDiceGame());
+
+    test('AdditionOfOneToTwo', () {
+      expect(Chip(1 + 2), Chip(3));
+    });
+
+    test('SubtractionOfOneFromTwo', () {
+      expect(Chip(2 - 1), Chip(1));
+    });
+
+    test('MultiplicationOfThreeToTwo', () {
+      expect(Chip(3 * 2), Chip(6));
+    });
+
+    test('OneEqualsToOne', () {
+      expect(Chip(1) == Chip(1), true);
+    });
+  });
+
+  group('PlayerShould', () {
+
+    Player player = Player();
+    RollDiceGame game = RollDiceGame();
+    Bet bet = Bet(Chip(1), 12);
+    
+    test('JoinGame', () {
+      player.join(game);
+
       expect(player.isInGame(), true);
-      player.leaveGame();
-      expect(player.isInGame(), false);
     });
-    test('player buy/has', () {
-      Player player = Player();
+
+    test('HasChips', () {
       player.buy(Chip(1));
+
       expect(player.has(Chip(1)), true);
     });
-    // test('player win/lose', () {
-    //   Player player = Player();
-    //   player.join(RollDiceGame());
-    //   expect(player.win(Chip(0)), true);
-    // });
+
+    test('SeeHisBet', () {
+      player.bet(bet);
+
+      expect(player.getBet(), bet);
+    });
   });
 }
