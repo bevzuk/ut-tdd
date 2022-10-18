@@ -1,9 +1,11 @@
 import 'package:casino/bet.dart';
 import 'package:casino/chip.dart';
-import 'package:casino/exceptions.dart';
+import 'package:casino/dice.dart';
 import 'package:casino/player.dart';
 import 'package:casino/roll_dice_game.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import 'dice_stub.dart';
 
 void main() {
   group("ChipTest", () {
@@ -35,7 +37,7 @@ void main() {
   group('PlayerShould', () {
     test('JoinGame', () {
       Player player = Player();
-      RollDiceGame game = RollDiceGame();
+      RollDiceGame game = RollDiceGame(Dice());
 
       player.join(game);
 
@@ -61,7 +63,7 @@ void main() {
 
     test('LeaveGame', () {
       Player player = Player();
-      RollDiceGame game = RollDiceGame();
+      RollDiceGame game = RollDiceGame(DiceStub());
 
       player.join(game);
       player.leaveGame();
@@ -71,8 +73,8 @@ void main() {
 
     test('NotJoinAnotherGameSimultaneously', () {
       Player player = Player();
-      RollDiceGame currentGame = RollDiceGame();
-      RollDiceGame anotherGame = RollDiceGame();
+      RollDiceGame currentGame = RollDiceGame(DiceStub());
+      RollDiceGame anotherGame = RollDiceGame(DiceStub());
 
       player.join(currentGame);
 
@@ -90,7 +92,7 @@ void main() {
       Player player6 = Player();
       Player player7 = Player();
 
-      RollDiceGame game = RollDiceGame();
+      RollDiceGame game = RollDiceGame(DiceStub());
 
       game.addPlayer(player1);
       game.addPlayer(player2);
