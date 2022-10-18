@@ -1,6 +1,5 @@
 import 'package:casino/bet.dart';
 import 'package:casino/chip.dart';
-import 'package:casino/dice.dart';
 import 'package:casino/roll_dice_game.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -14,7 +13,7 @@ void main() {
     late PlayerMock playerMock;
 
     setUp() {
-      game = RollDiceGame(DiceStub());
+      game = RollDiceGame(DiceStub(5));
       playerMock = PlayerMock();
       game.addPlayer(playerMock);
       playerMock.bet(bet);

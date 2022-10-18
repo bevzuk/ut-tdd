@@ -63,7 +63,7 @@ void main() {
 
     test('LeaveGame', () {
       Player player = Player();
-      RollDiceGame game = RollDiceGame(DiceStub());
+      RollDiceGame game = RollDiceGame(DiceStub(5));
 
       player.join(game);
       player.leaveGame();
@@ -73,8 +73,8 @@ void main() {
 
     test('NotJoinAnotherGameSimultaneously', () {
       Player player = Player();
-      RollDiceGame currentGame = RollDiceGame(DiceStub());
-      RollDiceGame anotherGame = RollDiceGame(DiceStub());
+      RollDiceGame currentGame = RollDiceGame(DiceStub(5));
+      RollDiceGame anotherGame = RollDiceGame(DiceStub(5));
 
       player.join(currentGame);
 
@@ -92,7 +92,7 @@ void main() {
       Player player6 = Player();
       Player player7 = Player();
 
-      RollDiceGame game = RollDiceGame(DiceStub());
+      RollDiceGame game = RollDiceGame(DiceStub(5));
 
       game.addPlayer(player1);
       game.addPlayer(player2);
