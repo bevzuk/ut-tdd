@@ -12,7 +12,7 @@ void main() {
     test('have 6 chips when betting 1 chip to score 5', () {
       Player player = Player();
       player.buy(Chip(1));
-      RollDiceGame game = RollDiceGame(DiceStub(5));
+      RollDiceGame game = RollDiceGame(Dice());
       player.join(game);
       Bet bet = Bet(Chip(1), 5);
       player.bet(bet);
