@@ -3,7 +3,6 @@ import 'package:casino/chip.dart';
 import 'package:casino/dice.dart';
 import 'package:casino/player.dart';
 import 'package:casino/roll_dice_game.dart';
-import 'package:casino/roll_dice_game_mock.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'dice_stub.dart';
