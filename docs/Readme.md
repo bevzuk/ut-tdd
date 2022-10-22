@@ -1,11 +1,11 @@
 ## 1.1. TODO:
-* [ ] Почитать про ScreenPlay, SerenityBDD и дополнить с блоке [08.Testing UI](08.Testing%20UI.md)
-* [ ] Описать Example Mapping в [10. BDD](10.BDD.md)
+* [ ] Todo 1
 
 ## 1.2. Links
 * (GitHub репозиторий)[https://github.com/bevzuk/ut-tdd]
 * (Фото тренинга в Самаре)[https://photos.app.goo.gl/vVmrkP3rFsQvY37a7]
 * (Фото тренинга в Райфе)[https://disk.yandex.ru/d/150AIWfx3GU3BP]
+* (Фото тренинга в Алмате)[https://photos.app.goo.gl/p2AUx62YYN4P2R9x5]
 
 ## 1.3. Подготовка
 
