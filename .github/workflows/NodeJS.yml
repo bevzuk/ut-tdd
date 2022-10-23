@@ -1,8 +1,8 @@
-name: NodeJS with Grunt
+name: NodeJS
 
 on:
-  push:
-    branches: ['**']
+#   push:
+#     branches: ['**']
   pull_request:
     branches: [ "main" ]
 
