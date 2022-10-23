@@ -2,8 +2,8 @@ name: NodeJS
 
 on:
   push:
-    branches:
-      - '**'
+    paths:
+      - 'NodeJS/**'
     
 jobs:
   build:
