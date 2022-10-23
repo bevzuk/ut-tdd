@@ -1,8 +1,8 @@
 name: NodeJS
 
 on:
-#   push:
-#     branches: ['**']
+  push:
+    branches: [ 'main', 'nodejs' ]
   pull_request:
     branches: [ "main" ]
 
