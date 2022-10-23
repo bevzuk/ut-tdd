@@ -2,7 +2,7 @@ name: NodeJS
 
 on:
   push:
-    branches: [ 'main', 'nodejs' ]
+    branches: [ 'nodejs' ]
   pull_request:
     branches: [ "main" ]
 
