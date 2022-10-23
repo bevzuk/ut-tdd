@@ -2,8 +2,7 @@ name: NodeJS with Grunt
 
 on:
   push:
-    branches:
-      - '**'
+    branches: ['**']
   pull_request:
     branches: [ "main" ]
 
