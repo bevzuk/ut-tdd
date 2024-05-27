@@ -15,4 +15,4 @@ def test_save_bet_details():
 
 def test_new_player_is_not_in_game():
     player = Player()
-    assert not player.is_in_game()
+    assert player.is_in_game() is False

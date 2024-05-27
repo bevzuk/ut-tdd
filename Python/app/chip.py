@@ -4,5 +4,5 @@ class Chip:
     def __init__(self, amount) -> None:
         self.amount = amount
 
-    # TODO: operator >=
-    # TODO: operator <=
+    #TODO: operator >=
+    #TODO: operator <=
