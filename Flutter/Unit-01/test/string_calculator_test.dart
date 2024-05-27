@@ -32,6 +32,11 @@ void main() {
       var sum = calculate("1/n2");
       expect(sum, 3);
     });
+
+    test('sum of many numbers divided by comma and /n', () {
+      var sum = calculate("1/n2,3");
+      expect(sum, 6);
+    });
   });
 }
 
