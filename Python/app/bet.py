@@ -1,4 +1,5 @@
-from Python.chip import Chip
+from .chip import Chip
+
 
 class Bet:
     chips = Chip(0)
