@@ -31,7 +31,7 @@ pyenv global 3.8.12
 
 ```bash
 cd ut-tdd/Python
-python3 -m venv .venv # 
+python3 -m venv .venv
 source .venv/bin/activate
 cp .assets/pip.conf .venv/pip.conf # на случай, если у вас по умолчанию стоит рабочий реестр пакетов
 pip install -r requirements.txt
