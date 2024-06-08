@@ -1,11 +1,24 @@
+from typing import Any
+from .Exceptions.invalid_operation_exception import InvalidOperationException
+
+
 class Chip:
-    amount = 0
+    _amount = 0
 
     def __init__(self, amount) -> None:
-        self.amount = amount
+        self._amount = amount
+
+    def __eq__(self, other):
+        if not isinstance(other, Chip):
+            raise InvalidOperationException()
+        return self._amount == other._amount
 
     def __ge__(self, other):
-        return self.amount >= other.amount
+        if not isinstance(other, Chip):
+            raise InvalidOperationException()
+        return self._amount >= other._amount
 
     def __le__(self, other):
-        return self.amount <= other.amount
+        if not isinstance(other, Chip):
+            raise InvalidOperationException()
+        return self._amount <= other._amount

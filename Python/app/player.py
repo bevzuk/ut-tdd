@@ -13,13 +13,13 @@ class Player:
 
     def join(self, game: RollDiceGame):
         if self.is_in_game():
-            raise InvalidOperationException();
+            raise InvalidOperationException()
         self._current_game = game
         self._current_game.add_player()
 
     def leave_game(self):
         if not self.is_in_game():
-            raise InvalidOperationException();
+            raise InvalidOperationException()
         self._current_game.remove_player()
         self._current_game = None
 
@@ -30,4 +30,4 @@ class Player:
         return self._available_chips >= chips
 
     def bet(self, bet: Bet):
-        pass
+        self._available_chips = Chip(self._available_chips._amount - bet.chips._amount)
