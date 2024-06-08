@@ -4,5 +4,8 @@ class Chip:
     def __init__(self, amount) -> None:
         self.amount = amount
 
-    #TODO: operator >=
-    #TODO: operator <=
+    def __ge__(self, other):
+        return self.amount >= other.amount
+
+    def __le__(self, other):
+        return self.amount <= other.amount

@@ -1,6 +1,7 @@
 from .bet import Bet
 from .chip import Chip
 from .roll_dice_game import RollDiceGame
+from .Exceptions.invalid_operation_exception import InvalidOperationException
 
 
 class Player:
@@ -9,19 +10,16 @@ class Player:
 
     def is_in_game(self) -> bool:
         return self._current_game is not None
-        return self._current_game is not None
 
     def join(self, game: RollDiceGame):
         if self.is_in_game():
-            return
-            #throw new InvalidOperationException();
+            raise InvalidOperationException();
         self._current_game = game
         self._current_game.add_player()
 
     def leave_game(self):
         if not self.is_in_game():
-            return
-            #throw new InvalidOperationException();
+            raise InvalidOperationException();
         self._current_game.remove_player()
         self._current_game = None
 
@@ -29,7 +27,7 @@ class Player:
         self._available_chips = chips
 
     def has(self, chips: Chip) -> bool:
-        return self._available_chips.amount >= chips.amount
+        return self._available_chips >= chips
 
     def bet(self, bet: Bet):
         pass
