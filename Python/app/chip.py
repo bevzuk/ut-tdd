@@ -22,3 +22,16 @@ class Chip:
         if not isinstance(other, Chip):
             raise InvalidOperationException()
         return self._amount <= other._amount
+
+    def __add__(self, other):
+        if not isinstance(other, Chip):
+            raise InvalidOperationException()
+        return Chip(self._amount + other._amount)
+
+    def __sub__(self, other):
+        if not isinstance(other, Chip):
+            raise InvalidOperationException()
+        return Chip(self._amount - other._amount)
+
+    def __mul__(self, value):
+        return Chip(self._amount * value)
