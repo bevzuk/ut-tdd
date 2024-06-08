@@ -32,6 +32,4 @@ class Player:
         return self._available_chips.amount >= chips.amount
 
     def bet(self, bet: Bet):
-    def bet(self, bet: Bet):
         pass
-
