@@ -1,11 +1,16 @@
 library casino;
 
-import 'dart:math';
+import 'dice.dart';
 import 'player.dart';
 import 'exceptions.dart';
 
 class RollDiceGame {
   final List<Player> _players = <Player>[];
+  late Dice _dice;
+
+  RollDiceGame(Dice dice) {
+    _dice = dice;
+  }
 
   addPlayer(Player player) {
     if (_players.length == 6) throw TooManyPlayersException();
@@ -17,9 +22,7 @@ class RollDiceGame {
   }
 
   play() {
-    final random = Random();
-    var winningScore = random.nextInt(6) + 1;
-
+    var winningScore = _dice.roll();
     for (var player in _players) {
       var bet = player.getBet();
       if (bet == null) continue;
