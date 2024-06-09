@@ -1,4 +1,3 @@
-from typing import Any
 from .Exceptions.invalid_operation_exception import InvalidOperationException
 
 

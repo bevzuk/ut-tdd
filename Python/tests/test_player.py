@@ -1,7 +1,7 @@
-from app.roll_dice_game import RollDiceGame
 from app.bet import Bet
 from app.chip import Chip
 from app.player import Player
+from app.roll_dice_game import RollDiceGame
 
 
 def test_player_by_default_has_no_chips():

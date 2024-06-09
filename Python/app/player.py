@@ -1,7 +1,6 @@
-from .bet import Bet
+from .Exceptions.invalid_operation_exception import InvalidOperationException
 from .chip import Chip
 from .i_roll_dice_game import IRollDiceGame
-from .Exceptions.invalid_operation_exception import InvalidOperationException
 
 
 class Player:
@@ -28,10 +27,9 @@ class Player:
 
     def has(self, chips: Chip) -> bool:
         return self._available_chips >= chips
-    
+
     def take(self, chips: Chip):
         self._available_chips -= chips
 
     def win(self, chips: Chip):
         self._available_chips += chips
-
