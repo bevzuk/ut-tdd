@@ -105,3 +105,10 @@ dist
 
 # Others
 .DS_Store
+
+# .Net binaries
+bin/
+obj/
+
+# Intellij Idea configs
+.idea/
