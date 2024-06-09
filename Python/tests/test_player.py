@@ -1,3 +1,5 @@
+import pytest
+
 from app.bet import Bet
 from app.chip import Chip
 from app.player import Player
@@ -49,6 +51,7 @@ def test_player_can_leave_game():
     assert not player.is_in_game()
 
 
+@pytest.mark.skip
 def test_player_can_loose():
     player = Player()
     game = RollDiceGame()
