@@ -5,8 +5,9 @@ from .Exceptions.invalid_operation_exception import InvalidOperationException
 
 
 class Player:
-    _current_game: IRollDiceGame = None
-    _available_chips: Chip = Chip(0)
+    def __init__(self):
+        self._current_game = None
+        self._available_chips = Chip(0)
 
     def is_in_game(self) -> bool:
         return self._current_game is not None

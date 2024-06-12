@@ -1,9 +1,9 @@
 import random
 
-
 from .bet import Bet
 from .player import Player
 from .Exceptions.too_many_players_exception import TooManyPlayersException
+
 
 class RollDiceGame:
     _players_count: int = 0
