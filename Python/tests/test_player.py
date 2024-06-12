@@ -1,10 +1,6 @@
 import pytest
 
-from app.bet import Bet
-from app.chip import Chip
-from app.player import Player
-from app.roll_dice_game import RollDiceGame, Dice
-
+from app import *
 
 def test_player_by_default_has_no_chips():
     player = Player()

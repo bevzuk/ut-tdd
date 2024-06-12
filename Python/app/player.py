@@ -1,9 +1,14 @@
+from typing import Optional
+
 from .Exceptions.invalid_operation_exception import InvalidOperationException
 from .chip import Chip
 from .i_roll_dice_game import IRollDiceGame
 
 
 class Player:
+    _current_game: Optional[IRollDiceGame]
+    _available_chips: Chip
+
     def __init__(self):
         self._current_game = None
         self._available_chips = Chip(0)
@@ -34,3 +39,4 @@ class Player:
 
     def win(self, chips: Chip):
         self._available_chips += chips
+

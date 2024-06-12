@@ -1,6 +1,4 @@
-import pytest
-
-from app.chip import Chip
+from app import *
 
 
 def test_pass():

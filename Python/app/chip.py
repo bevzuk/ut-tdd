@@ -2,7 +2,7 @@ from .Exceptions.invalid_operation_exception import InvalidOperationException
 
 
 class Chip:
-    _amount = 0
+    _amount: int
 
     def __init__(self, amount) -> None:
         self._amount = amount

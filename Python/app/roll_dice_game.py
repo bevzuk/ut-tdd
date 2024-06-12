@@ -1,4 +1,5 @@
 import random
+from typing import List
 
 from .Exceptions.too_many_players_exception import TooManyPlayersException
 from .bet import Bet
@@ -12,9 +13,12 @@ class Dice:
 
 
 class RollDiceGame:
+    _players_count: int
+    _bets: List
+
     def __init__(self, dice: Dice):
         self._dice = dice
-        self._players_count: int = 0
+        self._players_count = 0
         self._bets = []
 
     def add_player(self):
