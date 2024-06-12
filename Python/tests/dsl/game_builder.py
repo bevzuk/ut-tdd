@@ -1,6 +1,7 @@
 from unittest.mock import MagicMock
 
-from app.roll_dice_game import RollDiceGame, Dice
+from app.roll_dice_game import RollDiceGame
+from app.dice import Dice
 
 
 class GameBuilder(RollDiceGame):

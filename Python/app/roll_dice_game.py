@@ -1,15 +1,9 @@
-import random
 from typing import List
 
 from .Exceptions.too_many_players_exception import TooManyPlayersException
-from .bet import Bet
+from .dice import Dice
 from .player import Player
-
-
-class Dice:
-    @staticmethod
-    def roll():
-        return random.randrange(1, 6)
+from .bet import Bet
 
 
 class RollDiceGame:

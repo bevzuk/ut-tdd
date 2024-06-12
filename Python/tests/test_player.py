@@ -1,6 +1,6 @@
 import pytest
-
 from app import *
+
 
 def test_player_by_default_has_no_chips():
     player = Player()

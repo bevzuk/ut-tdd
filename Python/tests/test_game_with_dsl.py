@@ -1,9 +1,6 @@
 from unittest.mock import MagicMock
 
-from app.bet import Bet
-from app.chip import Chip
-from app.player import Player
-from app.roll_dice_game import RollDiceGame, Dice
+from app import *
 from .dsl.create import Create
 
 
