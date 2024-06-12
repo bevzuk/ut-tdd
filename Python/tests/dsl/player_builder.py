@@ -25,15 +25,15 @@ class PlayerBuilder(Player):
     def with_bet(self, chips_amount: int):
         if not self.has(Chip(chips_amount)):
             self.buy(Chip(chips_amount))
-        self._game.bet(self, Bet(Chip(chips_amount), self._get_score()))
+        self._game.bet(self, Bet(Chip(chips_amount), self._get_face_value()))
         return self
 
     def with_chips(self, chips_amount: int):
         self.buy(Chip(chips_amount))
         return self
 
-    def _get_score(self):
+    def _get_face_value(self):
         if self._lucky:
-            return self._game.lucky_score
+            return self._game.lucky_face_value
         else:
-            return self._game.lucky_score + 1
+            return self._game.lucky_face_value + 1

@@ -25,6 +25,15 @@ def test_player_can_make_bet():
     assert player.has(Chip(0))
 
 
+def test_player_cant_make_bet_without_chips():
+    player = Player()
+    game = RollDiceGame(Dice())
+    player.join(game)
+
+    with pytest.raises(InvalidOperationException) as e:
+        game.bet(player, Bet(Chip(1), 1))
+
+
 def test_player_by_default_not_in_game():
     player = Player()
     assert player.is_in_game() is False

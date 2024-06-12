@@ -3,8 +3,8 @@ from .chip import Chip
 
 class Bet:
     chips: Chip
-    score: int
+    face_value: int
 
-    def __init__(self, chips: Chip, score: int) -> None:
+    def __init__(self, chips: Chip, face_value: int) -> None:
         self.chips = chips
-        self.score = score
+        self.face_value = face_value

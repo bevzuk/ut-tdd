@@ -1,5 +1,6 @@
 from typing import List
 
+from .Exceptions.invalid_operation_exception import InvalidOperationException
 from .Exceptions.too_many_players_exception import TooManyPlayersException
 from .dice import Dice
 from .player import Player
@@ -24,11 +25,14 @@ class RollDiceGame:
         self._players_count -= 1
 
     def bet(self, player: Player, bet: Bet):
-        self._bets.append({'player': player, 'chips': bet.chips, 'score': bet.score})
+        if not player.has(bet.chips):
+            raise InvalidOperationException
+
+        self._bets.append({'player': player, 'chips': bet.chips, 'face_value': bet.face_value})
         player.take(bet.chips)
 
     def play(self):
-        winning_score = self._dice.roll()
+        winning_face_value = self._dice.roll()
         for bet in self._bets:
-            if bet['score'] == winning_score:
+            if bet['face_value'] == winning_face_value:
                 bet['player'].win(bet['chips'] * 6)

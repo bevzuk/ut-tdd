@@ -5,15 +5,15 @@ from app.dice import Dice
 
 
 class GameBuilder(RollDiceGame):
-    lucky_score: int
+    lucky_face_value: int
 
     def __init__(self):
-        self.lucky_score: int = 6
+        self.lucky_face_value: int = 6
         self.dice = Dice()
-        self.dice.roll = MagicMock(return_value=self.lucky_score)
+        self.dice.roll = MagicMock(return_value=self.lucky_face_value)
         super().__init__(self.dice)
 
-    def with_lucky_score(self, lucky_score: int):
-        self.lucky_score = lucky_score
-        self.dice.roll = MagicMock(return_value=self.lucky_score)
+    def with_lucky_face_value(self, lucky_face_value: int):
+        self.lucky_face_value = lucky_face_value
+        self.dice.roll = MagicMock(return_value=self.lucky_face_value)
         return self
