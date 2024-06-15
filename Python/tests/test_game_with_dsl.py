@@ -1,7 +1,7 @@
 from unittest.mock import MagicMock
 
 from app import *
-from .dsl.create import Create
+from .dsl import *
 
 
 class TestRollDiceGame:
@@ -18,6 +18,7 @@ class TestRollDiceGame:
         game.play()
 
         assert player.has(Chip(60))
+        assert not player.has(Chip(61))
 
     def test_lucky_player_wins_6_bets_dsl(self):
         game = Create.game()
@@ -25,7 +26,7 @@ class TestRollDiceGame:
 
         game.play()
 
-        assert player.has(Chip(60))
+        assert_player_has_chips(player, 60)
 
     def test_unlucky_player_loses_his_bet_dsl(self):
         game = Create.game()
@@ -36,5 +37,4 @@ class TestRollDiceGame:
 
         game.play()
 
-        assert player.has(Chip(90))
-        assert not player.has(Chip(91))
+        assert_player_has_chips(player, 90)
