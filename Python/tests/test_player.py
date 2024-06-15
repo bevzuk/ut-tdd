@@ -1,19 +1,5 @@
-class Player:
-    def get_chips(self):
-        return Chips(100)
-
-
-class Casino:
-    def sell(self, player, param):
-        pass
-
-
-class Chips:
-    def __init__(self, amount: int):
-        self._amount = amount
-
-    def __eq__(self, other):
-        return self._amount == other._amount
+from app import Player, Casino
+from app.chips import Chips
 
 
 def test_player_can_buy_chips_in_casino():
