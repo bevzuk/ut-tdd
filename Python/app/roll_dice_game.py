@@ -1,6 +1,7 @@
 from typing import List
 import random
 
+from .Exceptions.invalid_operation_exception import InvalidOperationException
 from .Exceptions.too_many_players_exception import TooManyPlayersException
 from .player import Player
 from .bet import Bet
@@ -23,6 +24,9 @@ class RollDiceGame:
         self._players_count -= 1
 
     def bet(self, player: Player, bet: Bet):
+        if not player.has(bet.chips):
+            raise InvalidOperationException
+
         self._bets.append({'player': player, 'chips': bet.chips, 'score': bet.score})
         player.take(bet.chips)
 
