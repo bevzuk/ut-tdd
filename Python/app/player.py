@@ -1,5 +1,6 @@
 from typing import Optional
 
+from .i_casino import ICasino
 from .Exceptions.invalid_operation_exception import InvalidOperationException
 from .chip import Chip
 from .i_roll_dice_game import IRollDiceGame
@@ -27,6 +28,10 @@ class Player:
             raise InvalidOperationException()
         self._current_game.remove_player()
         self._current_game = None
+
+    def buy2(self, casino: ICasino, chips: Chip):
+        casino.sell(chips)
+        self._available_chips = chips
 
     def buy(self, chips: Chip):
         self._available_chips = chips

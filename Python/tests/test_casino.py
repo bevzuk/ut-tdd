@@ -50,3 +50,12 @@ class TestCasino:
             casino.join_to_game(player)
 
         assert casino.has_free_table() is False
+
+    def test_casino_has_bank_of_chips(self):
+        casino = Casino(chips_in_bank = 10)
+        player = Player()
+
+        player.buy2(casino, 9)
+
+        assert casino.has_chips(1) is True
+        assert casino.has_chips(2) is False

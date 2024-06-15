@@ -5,5 +5,6 @@ from .player import Player
 from .roll_dice_game import RollDiceGame
 from .dice import Dice
 from .casino import Casino
+from .i_casino import ICasino
 from .Exceptions.invalid_operation_exception import InvalidOperationException
 from .Exceptions.too_many_players_exception import TooManyPlayersException
