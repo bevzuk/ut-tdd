@@ -5,7 +5,7 @@ from .dsl.create import Create
 
 
 class TestRollDiceGame:
-
+    # Exercise 3 – make fixture
     def test_lucky_player_wins_6_bets(self):
         player = Player()
         dice = Dice()

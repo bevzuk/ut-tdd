@@ -1,12 +1,10 @@
+from unittest.mock import MagicMock
+
 import pytest
 from app import *
 
 
-def test_player_by_default_has_no_chips():
-    player = Player()
-    assert player.has(Chip(0))
-
-
+# Exercise 1
 def test_player_can_buy_chips():
     player = Player()
     player.buy(Chip(1))
@@ -25,6 +23,12 @@ def test_player_can_make_bet():
     assert player.has(Chip(0))
 
 
+# Exercise 2
+def test_player_by_default_has_no_chips():
+    player = Player()
+    assert player.has(Chip(0))
+
+
 def test_player_cant_make_bet_without_chips():
     player = Player()
     game = RollDiceGame(Dice())
@@ -32,6 +36,51 @@ def test_player_cant_make_bet_without_chips():
 
     with pytest.raises(InvalidOperationException) as e:
         game.bet(player, Bet(Chip(1), 1))
+
+
+def test_player_can_make_two_bets_on_different_face_values():
+    player = Player()
+    player.buy(Chip(2))
+    game = RollDiceGame(Dice())
+    player.join(game)
+
+    game.bet(player, Bet(Chip(1), 6))
+    game.bet(player, Bet(Chip(1), 5))
+
+    assert player.has(Chip(1)) is False
+    assert player.has(Chip(0))
+
+
+def test_player_can_make_two_bets_on_the_same_face_value():
+    player = Player()
+    player.buy(Chip(2))
+    game = RollDiceGame(Dice())
+    player.join(game)
+
+    game.bet(player, Bet(Chip(1), 6))
+    game.bet(player, Bet(Chip(1), 6))
+
+    assert player.has(Chip(1)) is False
+    assert player.has(Chip(0))
+
+# Exercise 3 – make fixture
+
+# Exercise 4 - test doubles
+
+def test_player_can_win_two_bets():
+    player = Player()
+    player.buy(Chip(3))
+    dice = Dice()
+    dice.roll = MagicMock(return_value=6)
+    game = RollDiceGame(dice)
+    player.join(game)
+    game.bet(player, Bet(Chip(1), 6))
+    game.bet(player, Bet(Chip(2), 6))
+
+    game.play()
+
+    assert player.has(Chip(19)) is False
+    assert player.has(Chip(18))
 
 
 def test_player_by_default_not_in_game():
