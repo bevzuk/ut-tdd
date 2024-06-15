@@ -39,4 +39,3 @@ class Player:
 
     def win(self, chips: Chip):
         self._available_chips += chips
-
