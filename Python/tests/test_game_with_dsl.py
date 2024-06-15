@@ -38,3 +38,4 @@ class TestRollDiceGame:
 
         assert player.has(Chip(90))
         assert not player.has(Chip(91))
+    
