@@ -1,3 +1,6 @@
+import pytest
+
+from app.Exceptions.invalid_operation_exception import InvalidOperationException
 from app.player import Player
 from app.casino import Casino
 from app.chips import Chips
@@ -30,3 +33,15 @@ def test_game_can_add_player():
     game.add(player)
 
     assert player in casino.get_players_of(game)
+
+
+def test_game_cant_add_player_second_time():
+    casino = Casino()
+    player = Player()
+    game = casino.get_open_game()
+    game.add(player)
+
+    with pytest.raises(InvalidOperationException) as e:
+        game.add(player)
+
+    assert str(e.value) == "Player can't be added second time"
