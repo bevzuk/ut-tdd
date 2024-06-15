@@ -20,12 +20,33 @@ class TestCasino:
         assert player.is_in_game() is True
 
     def test_player_cant_join_to_game_when_there_are_no_free_tables(self):
-        casino = Casino(tables=5, seats_per_table=2)
+        casino = Casino(tables=5)
 
-        for i in range(5 * 2):
+        for i in range(5 * RollDiceGame.MAX_PLAYER_COUNT):
             player = Player()
             casino.join_to_game(player)
 
         player = Player()
         with pytest.raises(InvalidOperationException):
             casino.join_to_game(player)
+
+    def test_player_can_bet(self):
+        casino = Casino()
+        player = Player()
+        player.buy(Chip(1))
+        game = casino.join_to_game(player)
+
+        game.bet(player, Bet(Chip(1), face_value=0))
+
+        assert player.is_in_game() is True
+        assert player.has(Chip(0))
+        assert not player.has(Chip(1))
+
+    def test_casino_informs_if_there_no_free_seats(self):
+        casino = Casino(tables=1)
+
+        for i in range(1 * RollDiceGame.MAX_PLAYER_COUNT):
+            player = Player()
+            casino.join_to_game(player)
+
+        assert casino.has_free_table() is False

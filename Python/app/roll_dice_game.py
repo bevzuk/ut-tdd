@@ -8,6 +8,7 @@ from .bet import Bet
 
 
 class RollDiceGame:
+    MAX_PLAYER_COUNT = 6
     _players_count: int
     _bets: List
 
@@ -17,7 +18,7 @@ class RollDiceGame:
         self._bets = []
 
     def add_player(self):
-        if self._players_count == 6:
+        if self._players_count == RollDiceGame.MAX_PLAYER_COUNT:
             raise TooManyPlayersException()
         self._players_count += 1
 
