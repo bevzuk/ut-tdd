@@ -22,7 +22,7 @@ def test_player_can_buy_more_chips_in_casino():
     assert player.get_chips() == Chips(200)
 
 
-def test_player_can_join_game():
+def test_game_can_add_player():
     casino = Casino()
     player = Player()
     game = casino.get_open_game()
