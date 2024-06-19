@@ -54,7 +54,9 @@ def test_can_win_with_gaining_chips(setup_player_with_5_chips_in_game):
     game.set_dice(dice)
     bet = Bet(Chip(5), win_score)
     game.bet(player, bet)
+
     game.play()
+
     assert player.has(Chip(5*6))
 
 def test_can_loose_with_loosing_chips(setup_player_with_5_chips_in_game):
@@ -65,5 +67,7 @@ def test_can_loose_with_loosing_chips(setup_player_with_5_chips_in_game):
     game.set_dice(dice)
     bet = Bet(Chip(1), win_score * 2)
     game.bet(player, bet)
+
     game.play()
+
     assert player.has(Chip(4))
