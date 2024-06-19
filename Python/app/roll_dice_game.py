@@ -36,5 +36,7 @@ class RollDiceGame:
         # winning_score = random.randrange(1, 6)
         winning_score = self._dice.roll()
         for bet in self._bets:
+            print(bet['score'])
+            print(winning_score)
             if bet['score'] == winning_score:
                 bet['player'].win(bet['chips'] * 6)

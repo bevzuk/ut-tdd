@@ -50,10 +50,10 @@ class Create:
         self._game.bet(self._player, bet)
         return self
 
-    def wins_game(self):
+    def gains(self, n_chips):
         self._game.play()
 
-        return self
+        assert self._player.has(Chip(n_chips))
 
 
 
@@ -82,5 +82,5 @@ def test_when_not_enough_chips_cannot_bet(setup_player_with_5_chips_in_game):
         game.bet(player, bet)
 
 def test_can_win_with_gaining_chips_dsl():
-    Create().player(is_cheater=True).buys_chips(n_chips=5).joins_game().bets_chips(n_chips=1).wins_game()
+    Create().player(is_cheater=True).buys_chips(n_chips=5).joins_game().bets_chips(n_chips=1).gains(n_chips=5 - 1 + 1 * 6)
  
