@@ -1,3 +1,4 @@
+from unittest.mock import MagicMock
 from app import *
 import sys
 import os
@@ -22,4 +23,17 @@ def test_roll_game_default_values(setup_player_and_game):
         game.bet(player, Bet(Chip(1), 2))
          
 
+def test_player_win_game():
+    player = Player()
+    dice = Dice()
+    dice.roll = MagicMock(return_value = 1)
+    bet = Bet(Chip(2), 1)
+    game = RollDiceGame(dice)
+    player.buy(Chip(2))
+    player.join(game)
+
+    game.bet(player, bet)
+    game.play()
+    
+    assert player.has(Chip(12))
     
