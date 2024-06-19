@@ -8,4 +8,4 @@ def test_player_wins():
 
     state.game.play()
 
-    assert state.check_players_chips(0, 4*6), "Game plays wrong"
+    assert state.check_player_chips(number=0, chip_count=4*6), "Game plays wrong"

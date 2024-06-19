@@ -39,7 +39,7 @@ class Helper:
         self.game.bet(self.players[number], Bet(Chip(chip_count), score))
         return self
 
-    def check_players_chips(self, number, chip_count):
+    def check_player_chips(self, number, chip_count):
         self.players[number].has(Chip(chip_count))
         return self
 
