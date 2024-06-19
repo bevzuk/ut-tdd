@@ -5,7 +5,7 @@ from .Exceptions.invalid_operation_exception import InvalidOperationException
 from .Exceptions.too_many_players_exception import TooManyPlayersException
 from .player import Player
 from .bet import Bet
-
+from .dice import Dice
 
 class RollDiceGame:
     _players_count: int
@@ -30,8 +30,8 @@ class RollDiceGame:
         self._bets.append({'player': player, 'chips': bet.chips, 'score': bet.score})
         player.take(bet.chips)
 
-    def play(self):
-        winning_score = random.randrange(1, 6)
+    def play(self, dice: Dice):
+        winning_score = dice.roll()
         for bet in self._bets:
             if bet['score'] == winning_score:
                 bet['player'].win(bet['chips'] * 6)
