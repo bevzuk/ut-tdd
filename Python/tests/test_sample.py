@@ -1,8 +1,8 @@
 from app import *
 from app.Exceptions.invalid_operation_exception import InvalidOperationException
-import unittest
+import pytest
 
-class TestDice(unittest.TestCase):
+class TestDice:
     def test_should_roll_less_than_6(self):
         assert Dice.roll() <= 6
 
@@ -10,7 +10,7 @@ class TestDice(unittest.TestCase):
         assert Dice.roll() >= 1
 
 
-class TestBet(unittest.TestCase):
+class TestBet:
     def test_can_init(self):
         bet = Bet(Chip(1), 1)
 
@@ -18,11 +18,11 @@ class TestBet(unittest.TestCase):
         assert bet.score == 1
 
 
-class TestChip(unittest.TestCase):
+class TestChip:
     def test_pass(self):
         assert Chip(1) == Chip(1)
 
-    @unittest.skip('Invalid code, should be fixed')
+    @pytest.mark.skip('Invalid code, should be fixed')
     def test_cant_assign_negative(self):
         with self.assertRaises(BaseException):
             Chip(-1)
@@ -55,7 +55,7 @@ class TestChip(unittest.TestCase):
 
         assert chip_sub == Chip(18)
 
-    @unittest.skip('Invalid code, should be fixed')
+    @pytest.mark.skip('Invalid code, should be fixed')
     def test_cant_sub_greater_chip(self):
         chip1 = Chip(11)
         chip2 = Chip(29)
@@ -71,7 +71,8 @@ class TestChip(unittest.TestCase):
         assert chip_mul == Chip(1969110)
 
 
-class TestPlayer(unittest.TestCase):
+class TestPlayer:
+    @pytest.fixture
     @staticmethod
     def setup_player_in_game():
         game = RollDiceGame()
@@ -95,11 +96,19 @@ class TestPlayer(unittest.TestCase):
 
         try:
             player.join(game)
-        except BaseException:
-            self.fail("player cannot join to game!")
+        except BaseException as e:
+            pytest.fail(str(e))
 
-    def test_cannot_join_to_game_twice(self):
-        player, game = self.setup_player_in_game()
+    def test_cannot_join_to_game_twice(self, setup_player_in_game):
+        player, game = setup_player_in_game
 
-        with self.assertRaises(InvalidOperationException):
+        with pytest.raises(InvalidOperationException):
             player.join(game)
+
+    def test_can_buy_chips(self, setup_player_in_game):
+        player, _ = setup_player_in_game
+
+        player.buy(Chip(10))
+
+        assert player.has(Chip(10))
+        assert not player.has(Chip(11))
