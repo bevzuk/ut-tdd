@@ -40,3 +40,12 @@ def test_when_not_enough_chips_cannot_bet(setup_player_with_5_chips_in_game):
 
     with pytest.raises(InvalidOperationException):
         game.bet(player, bet)
+
+def test_can_receive_chips_on_winning(setup_player_with_5_chips_in_game):
+    player, _ = setup_player_with_5_chips_in_game
+    
+    player.win(Chip(5))
+
+    assert player.has(Chip(10))
+    assert not player.has(Chip(11))
+    
