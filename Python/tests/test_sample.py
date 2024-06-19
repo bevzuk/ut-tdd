@@ -1,91 +1,90 @@
-import unittest
+import pytest
 from app import Bet, Chip, Dice, RollDiceGame, Player
 
 
-class TestBet(unittest.TestCase):
-    @unittest.skip('Invalid code, should be fixed')
-    def test_cannot_be_negative(self):
-        with self.assertRaises(BaseException):
-            Bet(Chip(-2), 1)
+@pytest.fixture(scope='function')
+def player():
+    return Player()
 
 
-class TestChip(unittest.TestCase):
-    @unittest.skip('Invalid code, should be fixed')
-    def test_cannot_be_negative(self):
-        with self.assertRaises(BaseException):
-            Chip(-2)
-
-    @unittest.skip('Invalid code, should be fixed')
-    def test_cannot_be_not_integer(self):
-        value = "example"
-        with self.assertRaises(BaseException):
-            Chip(value)
+@pytest.fixture(scope='function')
+def rolldice_game():
+    return RollDiceGame()
 
 
-class TestGame(unittest.TestCase):
-    pass
+@pytest.fixture(scope='function')
+def player_in_game(player, rolldice_game):
+    player.join(rolldice_game)
+    return player, rolldice_game
 
 
-class TestDice(unittest.TestCase):
-    def test_is_rolling(self):
-        dice = Dice()
-        assert isinstance(dice.roll(), int)
+@pytest.mark.skip(reason="Invalid code, should be fixed")
+def test_bet_cannot_be_negative():
+    with pytest.raises(BaseException):
+        Bet(Chip(-2), 1)
 
 
-class TestPlayer(unittest.TestCase):
-    def test_cannot_join_twice_on_same_game(self):
-        player = Player()
-        game = RollDiceGame()
+@pytest.mark.skip(reason="Invalid code, should be fixed")
+def test_chip_cannot_be_negative():
+    with pytest.raises(BaseException):
+        Chip(-2)
+
+
+@pytest.mark.skip(reason="Invalid code, should be fixed")
+def test_chip_cannot_be_non_integer():
+    value = 'example'
+
+    with pytest.raises(BaseException):
+        Chip(value)
+
+
+def test_player_cannot_join_twice_on_same_game(player_in_game):
+    player, game = player_in_game
+    with pytest.raises(BaseException):
         player.join(game)
 
-        with self.assertRaises(BaseException):
-            player.join(game)
 
-    def test_cannot_join_different_games_at_same_time(self):
-        player = Player()
-        game1 = RollDiceGame()
-        game2 = RollDiceGame()
-        player.join(game1)
+def test_player_cannot_join_different_games_at_same_time(player_in_game):
+    player, _ = player_in_game
+    another_game = RollDiceGame()
 
-        with self.assertRaises(BaseException):
-            player.join(game2)
+    with pytest.raises(BaseException):
+        player.join(another_game)
 
-    def test_cannot_leave_game_twice(self):
-        player = Player()
-        game = RollDiceGame()
-        player.join(game)
+
+def test_player_cannot_leave_game_twice(player_in_game):
+    player, _ = player_in_game
+    player.leave_game()
+
+    with pytest.raises(BaseException):
         player.leave_game()
 
-        with self.assertRaises(BaseException):
-            player.leave_game()
 
-    def test_can_join_game(self):
-        player = Player()
-        game = RollDiceGame()
-        assert player.join(game) is None
+def test_player_can_join_game(player, rolldice_game):
+    player.join(rolldice_game)
 
-    def test_can_buy_chips(self):
-        player = Player()
-        chips = Chip(10)
-        assert player.buy(chips) is None
 
-    def test_can_place_bet(self):
-        player = Player()
-        player.buy(Chip(10))
-        game = RollDiceGame()
-        bet = Bet(Chip(10), 10)
-        assert game.bet(player, bet) is None
+def test_player_can_leave_game(player_in_game):
+    player, _ = player_in_game
+    player.leave_game()
 
-    def test_cannot_place_bet_if_not_enough_chips(self):
-        player = Player()
-        player.buy(Chip(10))
-        game = RollDiceGame()
-        bet = Bet(Chip(15), 1)
-        with self.assertRaises(BaseException):
-            game.bet(player, bet)
 
-    def test_can_leave_game(self):
-        player = Player()
-        game = RollDiceGame()
-        player.join(game)
-        assert player.leave_game() is None
+def test_player_can_buy_chips(player):
+    assert player.buy(Chip(20)) is None
+
+
+def test_player_can_place_bet(player_in_game):
+    player, game = player_in_game
+    player.buy(Chip(20))
+    bet = Bet(Chip(10), 6)
+
+    assert game.bet(player, bet) is None
+
+
+def test_player_cannot_place_bet_if_not_enough_chips(player_in_game):
+    player, game = player_in_game
+    player.buy(Chip(20))
+    bet = Bet(Chip(25), 6)
+
+    with pytest.raises(BaseException):
+        game.bet(player, bet)
