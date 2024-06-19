@@ -5,6 +5,37 @@ import pytest
 from app import *
 
 
+class PlayerContext:
+    player: Player
+    game: IRollDiceGame
+    _score: int = 6
+
+    def create_player(self):
+        self.player = Player()
+        return self
+
+    def in_game(self):
+        self.game = RollDiceGame()
+        self.player.join(self.game)
+        return self
+
+    def with_chips(self, num_chips: int):
+        self.player.buy(Chip(num_chips))
+        return self
+
+    def bets(self, num_chips: int):
+        self.game.bet(self.player, Bet(Chip(num_chips), self._score))
+        return self
+
+    def wins(self):
+        Dice.roll = MagicMock(return_value=self._score)
+        return self
+
+    def loses(self):
+        Dice.roll = MagicMock(return_value=-1)
+        return self
+
+
 @pytest.fixture(scope='function')
 def player():
     return Player()
@@ -65,20 +96,36 @@ def test_can_leave_game(player_in_game):
 def test_can_win(player_in_game):
     player, game = player_in_game
     player.buy(Chip(3))
+    game.bet(player, Bet(Chip(3), score=6))
     Dice.roll = MagicMock(return_value=6)
 
-    game.bet(player, Bet(Chip(3), score=6))
     game.play()
 
-    assert player.has(Chip(18))
+    assert player.has(Chip(3) * 6)
 
 
 def test_can_lose(player_in_game):
     player, game = player_in_game
     player.buy(Chip(3))
+    game.bet(player, Bet(Chip(3), score=6))
     Dice.roll = MagicMock(return_value=5)
 
-    game.bet(player, Bet(Chip(3), score=6))
     game.play()
 
     assert player.has(Chip(0))
+
+
+def test_can_win_dsl():
+    ctx = PlayerContext().create_player().in_game().with_chips(3).bets(3).wins()
+
+    ctx.game.play()
+
+    assert ctx.player.has(Chip(3) * 6)
+
+
+def test_can_lose_dsl():
+    ctx = PlayerContext().create_player().in_game().with_chips(3).bets(3).loses()
+
+    ctx.game.play()
+
+    assert ctx.player.has(Chip(0))
