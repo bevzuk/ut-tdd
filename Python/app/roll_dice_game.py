@@ -27,15 +27,14 @@ class RollDiceGame:
         if not player.has(bet.chips):
             raise InvalidOperationException
 
-        self._bets.append({'player': player, 'chips': bet.chips, 'score': bet.score})
+        self._bets.append({"player": player, "chips": bet.chips, "score": bet.score})
         player.take(bet.chips)
 
     def play(self):
         winning_score = self.winning_score()
         for bet in self._bets:
-            if bet['score'] == winning_score:
-                bet['player'].win(bet['chips'] * 6)
-
+            if bet["score"] == winning_score:
+                bet["player"].win(bet["chips"] * 6)
 
     def winning_score(self):
         return random.randrange(1, 6)
