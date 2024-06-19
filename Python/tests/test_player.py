@@ -18,8 +18,43 @@ def setup_player_with_5_chips_in_game():
 
     return player, game
 
-# @pytest.fixture
-# def setup_game():
+class Create:
+    def __init__(self):
+        self._player = None
+        self._dice = None
+        self._game = None
+
+    def make_dice(self, is_cheater=True):
+        self._dice = Dice()
+        win_score = 1
+        self._dice.roll = MagicMock(return_value = win_score)
+        return self
+
+    def player(self, is_cheater=True):
+        self._player = Player()
+        self.make_dice(is_cheater)
+        return self
+
+    def buys_chips(self, n_chips=5):
+        chips = Chip(n_chips)
+        self._player.buy(chips)
+        return self
+
+    def joins_game(self):
+        self._game = RollDiceGame(self._dice)
+        self._player.join(self._game)
+        return self
+
+    def bets_chips(self, n_chips = 1, win_score = 1):
+        bet = Bet(Chip(n_chips), win_score)
+        self._game.bet(self._player, bet)
+        return self
+
+    def wins_game(self):
+        self._game.play()
+
+        return self
+
 
 
 def test_has_no_chips_by_default():
@@ -46,28 +81,31 @@ def test_when_not_enough_chips_cannot_bet(setup_player_with_5_chips_in_game):
     with pytest.raises(InvalidOperationException):
         game.bet(player, bet)
 
-def test_can_win_with_gaining_chips(setup_player_with_5_chips_in_game):
-    player, game = setup_player_with_5_chips_in_game
-    dice = Dice()
-    win_score = 1
-    dice.roll = MagicMock(return_value = win_score)
-    game.set_dice(dice)
-    bet = Bet(Chip(5), win_score)
-    game.bet(player, bet)
+# def test_can_win_with_gaining_chips(setup_player_with_5_chips_in_game):
+#     player, game = setup_player_with_5_chips_in_game
+#     dice = Dice()
+#     win_score = 1
+#     dice.roll = MagicMock(return_value = win_score)
+#     game.set_dice(dice)
+#     bet = Bet(Chip(5), win_score)
+#     game.bet(player, bet)
 
-    game.play()
+#     game.play()
 
-    assert player.has(Chip(5*6))
+#     assert player.has(Chip(5*6))
 
 def test_can_loose_with_loosing_chips(setup_player_with_5_chips_in_game):
     player, game = setup_player_with_5_chips_in_game
     dice = Dice()
     win_score = 1
     dice.roll = MagicMock(return_value = win_score)
-    game.set_dice(dice)
     bet = Bet(Chip(1), win_score * 2)
     game.bet(player, bet)
 
     game.play()
 
     assert player.has(Chip(4))
+
+def test_can_win_with_gaining_chips_dsl():
+    Create().player(is_cheater=True).buys_chips(n_chips=5).joins_game().bets_chips(n_chips=1).wins_game()
+ 

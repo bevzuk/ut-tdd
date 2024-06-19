@@ -12,12 +12,9 @@ class RollDiceGame:
     _players_count: int
     _bets: List
 
-    def __init__(self):
+    def __init__(self, dice=Dice()):
         self._players_count = 0
         self._bets = []
-        self._dice = Dice()
-
-    def set_dice(self, dice: Dice):
         self._dice = dice
 
     def add_player(self):
