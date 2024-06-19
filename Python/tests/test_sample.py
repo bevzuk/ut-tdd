@@ -1,3 +1,5 @@
+from unittest.mock import MagicMock
+
 import pytest
 
 from app import *
@@ -16,11 +18,9 @@ def setup_player_with_10_chips_in_game():
     return player, game
 
 
-
-
-
 def test_pass():
     assert Chip(1) == Chip(1)
+
 
 def test_player_buy_chips():
     chips = Chip(3)
@@ -30,6 +30,7 @@ def test_player_buy_chips():
 
     assert player.has(Chip(4)) is False
     assert player.has(Chip(3)) is True
+
 
 #def test_init_player():
 #    player = Player()
@@ -75,6 +76,14 @@ def setup_game_with_6_players():
     return game
 
 
+@pytest.fixture
+def setup_player_and_game():
+    game = RollDiceGame()
+    player = Player()
+
+    return player, game
+
+
 def test_unable_to_join_to_game_with_6_players(setup_game_with_6_players):
     player = Player()
     game = setup_game_with_6_players
@@ -83,3 +92,38 @@ def test_unable_to_join_to_game_with_6_players(setup_game_with_6_players):
         player.join(game)
 
 
+def test_able_to_join_to_game_with_less_than_6_players(setup_game_with_6_players):
+    player = Player()
+    game = setup_game_with_6_players
+
+    with pytest.raises(TooManyPlayersException):
+        player.join(game)
+
+
+def test_mock_can_work():
+    player = Player()
+    player.buy = MagicMock(return_value=1)
+
+    magic_mock_value = player.buy()
+
+    assert magic_mock_value == 1
+
+
+def test_player_can_win(setup_player_with_10_chips_in_game):
+    player, game = setup_player_with_10_chips_in_game
+    game.dice.roll = MagicMock(return_value=1)
+
+    game.bet(player, Bet(Chip(5), 1))
+    game.play()
+
+    assert player.has(Chip(15)) is True
+
+
+def test_player_can_lose(setup_player_with_10_chips_in_game):
+    player, game = setup_player_with_10_chips_in_game
+    game.dice.roll = MagicMock(return_value=1)
+
+    game.bet(player, Bet(Chip(5), 2))
+    game.play()
+
+    assert player.has(Chip(10)) is False
