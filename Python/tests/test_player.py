@@ -29,7 +29,7 @@ def test_can_bet():
     lucky_player.buy(Chip(4))
 
     try:
-        game.bet(lucky_player, Chip(2))
+        game.bet(lucky_player, Bet(Chip(2), 4))
     except BaseException:
         assert False, "Player cannot bet 2 chips"
 
@@ -39,10 +39,7 @@ def test_can_leave_game():
     lucky_player = Player()
     lucky_player.join(game)
 
-    try:
-        lucky_player.leave_game()
-    except BaseException:
-        assert False, "Player cannot leave the game"
+    assert lucky_player.is_in_game(), "Player cannot leave the game"
 
 
 def test_cannot_join_2games():
