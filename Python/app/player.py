@@ -16,6 +16,9 @@ class Player:
     def is_in_game(self) -> bool:
         return self._current_game is not None
 
+    def get_chips_amount(self):
+        return len(self._available_chips)
+
     def join(self, game: IRollDiceGame):
         if self.is_in_game():
             raise InvalidOperationException()

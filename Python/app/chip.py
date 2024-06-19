@@ -7,6 +7,9 @@ class Chip:
     def __init__(self, amount) -> None:
         self._amount = amount
 
+    def __len__(self):
+        return self._amount
+
     def __eq__(self, other):
         if not isinstance(other, Chip):
             raise InvalidOperationException()
