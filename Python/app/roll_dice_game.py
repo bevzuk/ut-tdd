@@ -1,5 +1,4 @@
 from typing import List
-import random
 
 from .Exceptions.invalid_operation_exception import InvalidOperationException
 from .Exceptions.too_many_players_exception import TooManyPlayersException
