@@ -1,6 +1,5 @@
-import unittest.mock
-import pytest
 import unittest
+import pytest
 
 from app import Bet, Chip, Dice, RollDiceGame, Player
 
