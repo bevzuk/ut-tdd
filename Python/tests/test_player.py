@@ -3,7 +3,7 @@ import pytest
 from Python.app import *
 
 
-@pytest.fixture
+@pytest.fixture(scope='function')
 def setup_game_with_one_player():
     game = RollDiceGame()
     lucky_player = Player()
@@ -30,10 +30,8 @@ def test_can_bet(setup_game_with_one_player):
     game, lucky_player = setup_game_with_one_player
     lucky_player.buy(Chip(4))
 
-    try:
-        game.bet(lucky_player, Bet(Chip(2), 4))
-    except BaseException:
-        assert False, "Player cannot bet 2 chips"
+    game.bet(lucky_player, Bet(Chip(2), 4))
+    assert lucky_player.has(Chip(2)), "Player cannot bet 2 chips"
 
 
 def test_can_leave_game(setup_game_with_one_player):
