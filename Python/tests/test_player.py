@@ -19,12 +19,13 @@ def player_in_game(player, game):
     return player, game
 
 
-def test_not_in_game(player):
+def test_is_not_in_game(player):
     assert player.is_in_game() is False
 
 
-def test_can_join_game(player_in_game):
-    player, _ = player_in_game
+def test_can_join_game(player, game):
+    player.join(game)
+
     assert player.is_in_game() is True
 
 
