@@ -13,7 +13,7 @@ def setup_game_and_player_with_bet_5_chips_on_6_score():
     return game, player
 
 
-def test_player_can_win(setup_game_and_player_with_bet_5_chips_on_6_score):
+def test_player_earns_6_bets_when_guessed(setup_game_and_player_with_bet_5_chips_on_6_score):
     game, player = setup_game_and_player_with_bet_5_chips_on_6_score
     dice = Dice()
     dice.roll = MagicMock(return_value=6)
@@ -23,7 +23,7 @@ def test_player_can_win(setup_game_and_player_with_bet_5_chips_on_6_score):
     assert player.has(Chip(30))
 
 
-def test_player_can_lose(setup_game_and_player_with_bet_5_chips_on_6_score):
+def test_player_lose_bet_when_missed(setup_game_and_player_with_bet_5_chips_on_6_score):
     game, player = setup_game_and_player_with_bet_5_chips_on_6_score
     dice = Dice()
     dice.roll = MagicMock(return_value=5)
