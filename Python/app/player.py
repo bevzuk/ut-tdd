@@ -13,6 +13,9 @@ class Player:
         self._current_game = None
         self._available_chips = Chip(0)
 
+    def get_current_game(self) -> IRollDiceGame | None:
+        return self._current_game
+
     def is_in_game(self) -> bool:
         return self._current_game is not None
 

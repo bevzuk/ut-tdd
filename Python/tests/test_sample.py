@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+import unittest.mock
+import pytest
+from app import Bet, Chip, Dice, RollDiceGame, Player, IRollDiceGame
+>>>>>>> 073c4fd (i dont know how we did it)
 import unittest
 import pytest
 
@@ -91,15 +97,56 @@ def test_player_cannot_place_bet_if_not_enough_chips(player_in_game):
     with pytest.raises(BaseException):
         game.bet(player, bet)
 
+class StubPlayer(Player):
+    def with_balance(self, balance: Chip):
+        self.buy(balance)
+        return self
 
-def test_player_actually_win(player_in_game):
-    Dice.roll = unittest.mock.MagicMock(return_value=1)
-    player, game = player_in_game
-    player.buy(Chip(20))
-    game.bet(player, Bet(Chip(20), 1))
-    game.play()
+    def join_to_game(self, game: RollDiceGame):
+        self.join(game)
+        return self
 
-    assert player.get_chips_balance() == Chip(120)
+    def with_bet(self, bet):
+        if not self.is_in_game():
+            raise RuntimeError("Player not in game")
+        game = self.get_current_game()
+        game.bet(self, bet)
+        return self
+
+
+    def lose_game_with(self, rollout: int = 1):
+        Dice.roll = unittest.mock.MagicMock(return_value=rollout)
+        if not self.is_in_game():
+            raise RuntimeError("Player not in game")
+        game = self.get_current_game()
+        game.play()
+        return self
+
+    def win_game_with(self, rollout: int = 1):
+        Dice.roll = unittest.mock.MagicMock(return_value=1)
+        if not self.is_in_game():
+            raise RuntimeError("Player not in game")
+        game = self.get_current_game()
+        game.play()
+        return self
+
+
+class Create:
+    @staticmethod
+    def player() -> StubPlayer:
+        return StubPlayer()
+
+
+def test_player_actually_lose(rolldice_game):
+    game = rolldice_game
+    player = Create.player().with_balance(Chip(10)).join_to_game(game).with_bet(Bet(Chip(10), 2)).lose_game_with(1)
+    assert player.get_chips_balance() == Chip(0)
+
+
+def test_player_actually_win(rolldice_game):
+    game = rolldice_game
+    player = Create.player().with_balance(Chip(10)).join_to_game(game).with_bet(Bet(Chip(10), 1)).win_game_with(1)
+    assert player.get_chips_balance() == Chip(60)
 
 
 def test_player_actually_lose(player_in_game):

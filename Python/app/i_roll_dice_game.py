@@ -7,3 +7,6 @@ class IRollDiceGame(Protocol):
 
     def remove_player(self):
         pass
+
+    def bet(self, player, bet):
+        pass
