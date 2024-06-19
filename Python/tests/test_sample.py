@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-=======
-import unittest.mock
-import pytest
-from app import Bet, Chip, Dice, RollDiceGame, Player, IRollDiceGame
->>>>>>> 073c4fd (i dont know how we did it)
 import unittest
 import pytest
 
