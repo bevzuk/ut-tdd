@@ -15,8 +15,8 @@ class Helper:
         self.players = []
 
     @staticmethod
-    def create_game(fixed_value=5):
-        return Helper(RollDiceGame(FakeDice(fixed_value)))
+    def create_game(fixed_dice_value=5):
+        return Helper(RollDiceGame(FakeDice(fixed_dice_value)))
 
     def with_one_player(self):
         self.players = [Player()]
@@ -24,7 +24,7 @@ class Helper:
         return self
 
     def buy_chips_for_player(self, number, count):
-        self.players[number].buy(Chip(number))
+        self.players[number].buy(Chip(count))
         return self
 
     def with_players(self, count=6):
@@ -37,3 +37,9 @@ class Helper:
 
     def player_place_a_bet(self, number, chip_count, score):
         self.game.bet(self.players[number], Bet(Chip(chip_count), score))
+        return self
+
+    def check_players_chips(self, number, chip_count):
+        self.players[number].has(Chip(chip_count))
+        return self
+
