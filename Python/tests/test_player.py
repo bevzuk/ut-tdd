@@ -39,7 +39,9 @@ def test_can_leave_game():
     lucky_player = Player()
     lucky_player.join(game)
 
-    assert lucky_player.is_in_game(), "Player cannot leave the game"
+    lucky_player.leave_game()
+
+    assert lucky_player.is_in_game() is False, "Player cannot leave the game"
 
 
 def test_cannot_join_2games():
