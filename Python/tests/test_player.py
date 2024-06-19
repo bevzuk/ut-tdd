@@ -5,24 +5,29 @@ import pytest
 
 sys.path.append(os.path.dirname(os.path.dirname(__file__)) + "/Python")
 from app.Exceptions.invalid_operation_exception import InvalidOperationException
+from app.Exceptions.too_many_players_exception import TooManyPlayersException
 
-def test_player_cant_join_twice_to_one_game():
+
+@pytest.fixture
+def setup_player_and_game():
     player = Player()
     game = RollDiceGame()
+    return  player, game
+
+def test_player_cant_join_twice_to_one_game(setup_player_and_game):
+    player, game = setup_player_and_game
     player.join(game)
     with pytest.raises(InvalidOperationException):
         player.join(game)
 
-def test_player_can_join_after_leave():
-    player = Player()
-    game = RollDiceGame()
+def test_player_can_join_after_leave(setup_player_and_game):
+    player, game = setup_player_and_game
     player.join(game)
     player.leave_game()
     player.join(game)
     
-def test_player_can_play_in_one_game_only():
-    player = Player()
-    game_one = RollDiceGame()
+def test_player_can_play_in_one_game_only(setup_player_and_game):
+    player, game_one = setup_player_and_game
     game_two = RollDiceGame()
     player.join(game_one)
     with pytest.raises(InvalidOperationException):
@@ -33,28 +38,30 @@ def test_player_cant_leave_game_if_he_outside_the_game():
     with pytest.raises(InvalidOperationException):
         player.leave_game()
 
-def test_player_in_game():
-    player = Player()
-    game_one = RollDiceGame()
-    player.join(game_one)
+def test_player_in_game(setup_player_and_game):
+    player, game = setup_player_and_game
+    player.join(game)
     assert True == player.is_in_game()
 
-def test_player_in_game():
-    player = Player()
-    game_one = RollDiceGame()
-    player.join(game_one)
-    assert True == player.is_in_game()
 
 def test_game_with_multiplie_players():
-    player_1 = Player()
-    player_2 = Player()
-    player_3 = Player()
-    player_4 = Player()
-    
     game = RollDiceGame()
-    player_1.join(game)
-    player_2.join(game)
-    player_3.join(game)
-    player_4.join(game)
+    
+    for _ in range(6):
+        Player().join(game)
+
+    with pytest.raises(TooManyPlayersException):
+        Player().join(game)
 
 
+def test_player_cannot_leave_twice(setup_player_and_game):
+    player, game = setup_player_and_game
+    
+    player.join(game)
+    player.leave_game()
+    
+    with pytest.raises(InvalidOperationException):
+        player.leave_game()
+        
+# def test_player_buy_chips():
+    

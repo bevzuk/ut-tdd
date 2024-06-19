@@ -7,10 +7,10 @@ sys.path.append(os.path.dirname(os.path.dirname(__file__)) + "/Python")
 from app.Exceptions.invalid_operation_exception import InvalidOperationException
 
 
-def test_chip_eq():
+def test_chip_equal():
     assert Chip(1) == Chip(1)
         
-def test_chip_ne():
+def test_chip_not_equal():
     assert Chip(1) != Chip(2)
     
     
