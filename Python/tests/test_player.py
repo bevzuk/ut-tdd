@@ -47,3 +47,11 @@ class TestPlayer:
         game.play()
         assert player.has(Chip(60))
 
+    def test_can_lose_bet_when_not_guessed_score(self, player_with_10_chips_and_game):
+        game, player = player_with_10_chips_and_game
+
+        game.winning_score = MagicMock(return_value=6)
+        game.bet(player, Bet(Chip(10), score=5))
+        game.play()
+        assert player.has(Chip(0))
+
