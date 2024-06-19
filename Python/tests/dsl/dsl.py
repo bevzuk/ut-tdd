@@ -1,7 +1,7 @@
 from Python.app import *
 
 
-class FakeDice(IDice):
+class DiceWithValue(IDice):
     def __init__(self, value):
         self._value = value
 
@@ -16,7 +16,7 @@ class Helper:
 
     @staticmethod
     def create_game(fixed_dice_value=5):
-        return Helper(RollDiceGame(FakeDice(fixed_dice_value)))
+        return Helper(RollDiceGame(DiceWithValue(fixed_dice_value)))
 
     def with_one_player(self):
         self.players = [Player()]
