@@ -11,3 +11,6 @@ class Casino:
 
     def get_persons_count(self):
         return len(self._persons)
+
+    def kickout(self, person):
+        self._persons.remove(person)
