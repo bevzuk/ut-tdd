@@ -2,11 +2,17 @@ from .dsl import PlayerBuilder as Player
 
 
 def test_can_join_game(game):
-    assert Player().JoinGame(game).is_in_game()
+    player = Player().JoinGame(game)
+
+    assert player.is_in_game()
 
 
 def test_can_leave_game(game):
-    assert Player().JoinGame(game).LeaveGame().is_in_game() is False
+    player = Player().JoinGame(game)
+
+    player.leave_game()
+
+    assert player.is_in_game() is False
 
 
 
