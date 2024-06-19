@@ -2,7 +2,9 @@ from app import *
 from  unittest.mock import MagicMock
 
 class PlayerContext:
-    
+    def __init__(self):
+        self.player = None
+         
     def create_player(self):
         self.player = Player()
         return self

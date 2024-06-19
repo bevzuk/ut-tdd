@@ -134,14 +134,9 @@ class TestPlayer:
 
         assert player_ctx.checkChips(bet * 6)
 
-    def test_lose_bet_when_dont_guess(self, setup_player_and_game_with_dice):
+    def test_lose_bet_when_dont_guess(self):
         bet = 10
-        player, game, dice = setup_player_and_game_with_dice
-        dice.roll = MagicMock(return_value=5)
-        player.buy(Chip(bet))
+        player_ctx = PlayerContext().create_player().buy_chips(10)
+        game = GameProcess().create_game_with_roll(5).add_player(player_ctx).bet(player_ctx.get_player(), bet, 2).start_game()
 
-        game.bet(player, Bet(Chip(bet), 2))
-        game.play()
-
-        assert player.has(Chip(0))
-        assert not player.has(Chip(1))
+        assert player_ctx.checkChips(0)

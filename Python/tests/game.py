@@ -1,8 +1,11 @@
 from app import *
 from  unittest.mock import MagicMock
 from .player_dsl import PlayerContext
+
 class GameProcess:
-    
+    def __init__(self):
+        self.game = None
+
     def create_game(self):
         self.game = RollDiceGame()
         return self
