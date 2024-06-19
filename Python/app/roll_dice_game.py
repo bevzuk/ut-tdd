@@ -18,6 +18,9 @@ class RollDiceGame:
         self._players_count = 0
         self._bets = []
         self._dice = dice
+    
+    def set_dice(self, dice):
+        self._dice = dice
 
 
     def add_player(self):
