@@ -1,5 +1,5 @@
-from app import *
 import unittest
+from app import Bet, Chip, Dice, RollDiceGame, Player
 
 
 class TestBet(unittest.TestCase):
@@ -29,7 +29,7 @@ class TestGame(unittest.TestCase):
 class TestDice(unittest.TestCase):
     def test_is_rolling(self):
         dice = Dice()
-        assert type(dice.roll()) == int
+        assert isinstance(dice.roll(), int)
 
 
 class TestPlayer(unittest.TestCase):
