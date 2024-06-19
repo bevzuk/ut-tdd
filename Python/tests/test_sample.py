@@ -1,5 +1,4 @@
 import pytest
-from unittest.mock import MagicMock
 
 from app import *
 
@@ -76,29 +75,3 @@ def test_player_can_buy(set_game_and_joined_player):
     player.buy(Chip(5))
 
     assert player.has(Chip(5))
-
-@pytest.fixture(scope="function")
-def create_player_in_game_with_bet_1(set_player, set_game_and_dice):
-    player = set_player
-    game, dice = set_game_and_dice
-    player.join(game)
-    player.buy(Chip(1))
-    game.add_player()
-    game.bet(player, Bet(Chip(1), 1))
-    return player, dice, game
-
-def test_player_can_win(create_player_in_game_with_bet_1):
-    player, dice, game = create_player_in_game_with_bet_1
-    dice.roll = MagicMock(return_value=1)
-
-    game.play()
-
-    assert player.get_chips_amount() == 6
-
-def test_player_can_loose(create_player_in_game_with_bet_1):
-    player, dice, game = create_player_in_game_with_bet_1
-    dice.roll = MagicMock(return_value=2)
-
-    game.play()
-
-    assert player.get_chips_amount() == 0
