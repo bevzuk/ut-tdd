@@ -1,6 +1,9 @@
 from app import *
 from app.Exceptions.invalid_operation_exception import InvalidOperationException
 import pytest
+from  unittest.mock import MagicMock
+from .game import GameProcess
+from .player_dsl import PlayerContext
 
 class TestDice:
     def test_should_roll_less_than_6(self):
@@ -112,3 +115,33 @@ class TestPlayer:
 
         assert player.has(Chip(10))
         assert not player.has(Chip(11))
+
+    @pytest.fixture
+    @staticmethod
+    def setup_player_and_game_with_dice():
+        dice = Dice()
+        game = RollDiceGame(dice)
+        player = Player()
+        player.join(game)
+
+        return player, game, dice
+
+
+    def test_win_bet_when_guess(self):
+        bet = 10
+        player_ctx = PlayerContext().create_player().buy_chips(10)
+        game = GameProcess().create_game_with_roll(6).add_player(player_ctx).bet(player_ctx.get_player(), bet, 6).start_game()
+
+        assert player_ctx.checkChips(bet * 6)
+
+    def test_lose_bet_when_dont_guess(self, setup_player_and_game_with_dice):
+        bet = 10
+        player, game, dice = setup_player_and_game_with_dice
+        dice.roll = MagicMock(return_value=5)
+        player.buy(Chip(bet))
+
+        game.bet(player, Bet(Chip(bet), 2))
+        game.play()
+
+        assert player.has(Chip(0))
+        assert not player.has(Chip(1))
