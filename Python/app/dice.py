@@ -10,4 +10,4 @@ class IDice:
 class Dice(IDice):
     @staticmethod
     def roll():
-        return random.randrange(1, 6)
+        return random.randint(1, 6)

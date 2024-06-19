@@ -18,6 +18,7 @@ def test_player_wins():
 
     assert lucky_player.has(Chip(4) * 6), "Game plays wrong"
 
+
 def test_player_lose():
     game = RollDiceGame(FakeDice())
     lucky_player = Player()
@@ -28,6 +29,7 @@ def test_player_lose():
     game.play()
 
     assert lucky_player.has(Chip(0)), "Game plays wrong"
+
 
 def test_plays_correctly_with_mock(mocker):
     mocked_dice = mocker.patch('Python.app.dice.Dice.roll', FakeDice)
