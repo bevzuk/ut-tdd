@@ -5,6 +5,7 @@ import pytest
 from app import *
 
 
+
 @pytest.fixture
 def setup_player_in_game():
     player = Player()
