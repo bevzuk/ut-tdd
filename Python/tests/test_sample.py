@@ -41,7 +41,7 @@ class TestPlayer(unittest.TestCase):
         with self.assertRaises(BaseException):
             player.join(game)
 
-    def test_cannot_join_different_games(self):
+    def test_cannot_join_different_games_at_same_time(self):
         player = Player()
         game1 = RollDiceGame()
         game2 = RollDiceGame()
