@@ -7,19 +7,17 @@ def test_can_join_game():
     game = RollDiceGame()
     lucky_player = Player()
 
-    try:
-        lucky_player.join(game)
-    except BaseException:
-        assert False, "Player cannot join the game"
+    lucky_player.join(game)
+
+    assert lucky_player.is_in_game(), "Player cannot join the game"
 
 
 def test_can_buy_chips():
     lucky_player = Player()
+    chips = Chip(4)
+    lucky_player.buy(chips)
 
-    try:
-        lucky_player.buy(Chip(4))
-    except BaseException:
-        assert False, "Player cannot buy chips"
+    assert lucky_player.has(chips)
 
 
 def test_can_bet():
