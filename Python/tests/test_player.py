@@ -5,33 +5,32 @@ import pytest
 
 
 class TestPlayer:
-
-    def test_can_join_game(self):
+    @pytest.fixture
+    def one_default_player_in_default_game(self):
         game = RollDiceGame()
-        player_1 = Player()
+        player = Player()
 
-        player_1.join(game)
+        player.join(game)
 
-        assert player_1.is_in_game() is True
+        return game, player
 
-    def test_cannot_join_different_game_twice(self):
-        game_1 = RollDiceGame()
+    def test_can_join_game(self, one_default_player_in_default_game):
+        _, player = one_default_player_in_default_game
+
+        assert player.is_in_game() is True
+
+    def test_cannot_join_different_game_twice(self, one_default_player_in_default_game):
+        _, player = one_default_player_in_default_game
         game_2 = RollDiceGame()
-        player_1 = Player()
-
-        player_1.join(game_1)
 
         with pytest.raises(InvalidOperationException):
-            player_1.join(game_2)
+            player.join(game_2)
 
-    def test_cannot_join_same_game_twice(self):
-        game_1 = RollDiceGame()
-        player_1 = Player()
-
-        player_1.join(game_1)
+    def test_cannot_join_same_game_twice(self, one_default_player_in_default_game):
+        game, player = one_default_player_in_default_game
 
         with pytest.raises(InvalidOperationException):
-            player_1.join(game_1)
+            player.join(game)
 
     def test_cant_join_few_games(self):
         pass

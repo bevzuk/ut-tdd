@@ -5,46 +5,46 @@ import pytest
 
 
 class TestChip:
-    def test_eq():
+    def test_eq(self):
         assert Chip(1) == Chip(1)
 
-    def test_ge():
+    def test_ge(self):
         assert Chip(2) >= Chip(1)
 
-    def test_ge_eq():
+    def test_ge_eq(self):
         assert Chip(2) >= Chip(2)
 
-    def test_le():
+    def test_le(self):
         assert Chip(1) <= Chip(2)
 
-    def test_le_eq():
+    def test_le_eq(self):
         assert Chip(2) <= Chip(2)
 
-    def test_exception_eq():
+    def test_exception_eq(self):
         with pytest.raises(InvalidOperationException):
             Chip(1) == 1
 
-    def test_exception_le():
+    def test_exception_le(self):
         with pytest.raises(InvalidOperationException):
             Chip(1) <= 1
 
-    def test_exception_ge():
+    def test_exception_ge(self):
         with pytest.raises(InvalidOperationException):
             Chip(1) >= 1
 
-    def test_exception_add():
+    def test_exception_add(self):
         with pytest.raises(InvalidOperationException):
             Chip(1) + 1
 
-    def test_exception_sub():
+    def test_exception_sub(self):
         with pytest.raises(InvalidOperationException):
             Chip(1) - 1
 
-    def test_add():
+    def test_add(self):
         assert Chip(1) + Chip(1) == Chip(2)
 
-    def test_sub():
+    def test_sub(self):
         assert Chip(2) - Chip(1) == Chip(1)
 
-    def test_mul():
+    def test_mul(self):
         assert Chip(1) * 2 == Chip(2)
