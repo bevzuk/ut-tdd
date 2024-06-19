@@ -4,24 +4,27 @@ from app import *
 from app.Exceptions.invalid_operation_exception import InvalidOperationException
 
 
-def test_player_can_bet_enough_chips():
+@pytest.fixture
+def setup_player_with_10_chips_in_game():
     game = RollDiceGame()
     player = Player()
     player.buy(Chip(10))
     player.join(game)
-    bet = Bet(Chip(5), 3)
+    return player, game
 
+def test_player_can_bet_enough_chips(setup_player_with_10_chips_in_game):
+    player, game = setup_player_with_10_chips_in_game
+
+    bet = Bet(Chip(5), 3)
     game.bet(player, bet)
 
     assert (player.has(Chip(5)) is True)
     assert (player.has(Chip(6)) is False)
 
 
-def test_player_can_not_bet_not_enough_chips():
-    game = RollDiceGame()
-    player = Player()
-    player.buy(Chip(10))
-    player.join(game)
+def test_player_can_not_bet_not_enough_chips(setup_player_with_10_chips_in_game):
+    player, game = setup_player_with_10_chips_in_game
+
     bet = Bet(Chip(100), 3)
 
     with pytest.raises(InvalidOperationException):
