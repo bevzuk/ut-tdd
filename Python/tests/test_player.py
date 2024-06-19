@@ -1,3 +1,5 @@
+from unittest.mock import MagicMock
+
 import pytest
 
 from app import *
@@ -58,3 +60,25 @@ def test_can_leave_game(player_in_game):
     player.leave_game()
 
     assert player.is_in_game() is False
+
+
+def test_can_win(player_in_game):
+    player, game = player_in_game
+    player.buy(Chip(3))
+    Dice.roll = MagicMock(return_value=6)
+
+    game.bet(player, Bet(Chip(3), score=6))
+    game.play()
+
+    assert player.has(Chip(18))
+
+
+def test_can_lose(player_in_game):
+    player, game = player_in_game
+    player.buy(Chip(3))
+    Dice.roll = MagicMock(return_value=5)
+
+    game.bet(player, Bet(Chip(3), score=6))
+    game.play()
+
+    assert player.has(Chip(0))

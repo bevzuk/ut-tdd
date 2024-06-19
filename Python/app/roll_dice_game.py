@@ -1,10 +1,10 @@
 from typing import List
-import random
 
+from .bet import Bet
+from .dice import Dice
 from .Exceptions.invalid_operation_exception import InvalidOperationException
 from .Exceptions.too_many_players_exception import TooManyPlayersException
 from .player import Player
-from .bet import Bet
 
 
 class RollDiceGame:
@@ -31,7 +31,7 @@ class RollDiceGame:
         player.take(bet.chips)
 
     def play(self):
-        winning_score = random.randrange(1, 6)
+        winning_score = Dice.roll()
         for bet in self._bets:
             if bet['score'] == winning_score:
                 bet['player'].win(bet['chips'] * 6)
