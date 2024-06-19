@@ -5,7 +5,7 @@ from Python.app import *
 
 @pytest.fixture(scope='function')
 def setup_game_with_one_player():
-    game = RollDiceGame()
+    game = RollDiceGame(Dice())
     lucky_player = Player()
     lucky_player.join(game)
 
@@ -44,7 +44,7 @@ def test_can_leave_game(setup_game_with_one_player):
 
 def test_cannot_join_2games(setup_game_with_one_player):
     game, lucky_player = setup_game_with_one_player
-    second_game = RollDiceGame()
+    second_game = RollDiceGame(Dice())
 
     with pytest.raises(BaseException):
         lucky_player.join(second_game)

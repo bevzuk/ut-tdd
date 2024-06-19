@@ -5,15 +5,17 @@ from .Exceptions.invalid_operation_exception import InvalidOperationException
 from .Exceptions.too_many_players_exception import TooManyPlayersException
 from .player import Player
 from .bet import Bet
+from .dice import IDice
 
 
 class RollDiceGame:
     _players_count: int
     _bets: List
 
-    def __init__(self):
+    def __init__(self, dice: IDice):
         self._players_count = 0
         self._bets = []
+        self._dice = dice
 
     def add_player(self):
         if self._players_count == 6:
@@ -31,7 +33,6 @@ class RollDiceGame:
         player.take(bet.chips)
 
     def play(self):
-        winning_score = random.randrange(1, 6)
         for bet in self._bets:
-            if bet['score'] == winning_score:
+            if bet['score'] == self._dice.roll():
                 bet['player'].win(bet['chips'] * 6)
