@@ -1,8 +1,14 @@
+import pytest
+
 from Python.app import *
+from Python.app.Exceptions.invalid_operation_exception import InvalidOperationException
 
 
-def test_game_add_player():
-    game = RollDiceGame()
-    game.add_player()
+def test_player_cant_join_2games():
+    first_game = RollDiceGame()
+    second_game = RollDiceGame()
+    ex_player = Player()
+    ex_player.join(first_game)
 
-    assert game._players_count == 1
+    with pytest.raises(InvalidOperationException):
+        ex_player.join(second_game)
