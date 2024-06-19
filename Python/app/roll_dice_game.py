@@ -31,7 +31,11 @@ class RollDiceGame:
         player.take(bet.chips)
 
     def play(self):
-        winning_score = random.randrange(1, 6)
+        winning_score = self.winning_score()
         for bet in self._bets:
             if bet['score'] == winning_score:
                 bet['player'].win(bet['chips'] * 6)
+
+
+    def winning_score(self):
+        return random.randrange(1, 6)

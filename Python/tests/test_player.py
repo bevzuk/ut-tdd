@@ -1,4 +1,5 @@
-from app import Chip, RollDiceGame, Player
+from app import Chip, RollDiceGame, Player, Bet
+from unittest.mock import MagicMock
 from app.Exceptions.invalid_operation_exception import InvalidOperationException
 
 import pytest
@@ -6,7 +7,7 @@ import pytest
 
 class TestPlayer:
     @pytest.fixture
-    def one_default_player_in_default_game(self):
+    def one_default_player_in_game(self):
         game = RollDiceGame()
         player = Player()
 
@@ -14,32 +15,35 @@ class TestPlayer:
 
         return game, player
 
-    def test_can_join_game(self, one_default_player_in_default_game):
-        _, player = one_default_player_in_default_game
+    @pytest.fixture
+    def player_with_10_chips_and_game(self, one_default_player_in_game):
+        game, player = one_default_player_in_game
+        player.buy(Chip(10))
+        return game, player
+
+    def test_can_join_game(self, one_default_player_in_game):
+        _, player = one_default_player_in_game
 
         assert player.is_in_game() is True
 
-    def test_cannot_join_different_game_twice(self, one_default_player_in_default_game):
-        _, player = one_default_player_in_default_game
+    def test_cannot_join_different_game_twice(self, one_default_player_in_game):
+        _, player = one_default_player_in_game
         game_2 = RollDiceGame()
 
         with pytest.raises(InvalidOperationException):
             player.join(game_2)
 
-    def test_cannot_join_same_game_twice(self, one_default_player_in_default_game):
-        game, player = one_default_player_in_default_game
+    def test_cannot_join_same_game_twice(self, one_default_player_in_game):
+        game, player = one_default_player_in_game
 
         with pytest.raises(InvalidOperationException):
             player.join(game)
 
-    def test_cant_join_few_games(self):
-        pass
+    def test_can_win_6_bets_when_guessed_score(self, player_with_10_chips_and_game):
+        game, player = player_with_10_chips_and_game
 
-    def test_can_buy_chips(self):
-        pass
+        game.winning_score = MagicMock(return_value=6)
+        game.bet(player, Bet(Chip(10), score=6))
+        game.play()
+        assert player.has(Chip(60))
 
-    def test_can_take(self):
-        pass
-
-    def test_can_leave_game(self):
-        pass
