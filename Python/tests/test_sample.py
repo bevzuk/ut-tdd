@@ -1,7 +1,8 @@
 import unittest.mock
 import pytest
-from app import Bet, Chip, Dice, RollDiceGame, Player
 import unittest
+
+from app import Bet, Chip, Dice, RollDiceGame, Player
 
 
 @pytest.fixture(scope='function')
