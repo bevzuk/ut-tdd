@@ -23,15 +23,15 @@ def test_can_buy_chips(player):
 
 
 def test_can_win(player_with_10_chips):
-    player.win(Chip(10))
+    player_with_10_chips.win(Chip(10))
 
-    assert (player.has(Chip(20)) is True)
+    assert (player_with_10_chips.has(Chip(20)) is True)
 
 
 def test_can_take(player_with_10_chips):
-    player.take(Chip(5))
+    player_with_10_chips.take(Chip(5))
 
-    assert (player.has(Chip(5)) is True)
+    assert (player_with_10_chips.has(Chip(5)) is True)
 
 
 def test_has_initial_zero_chips(player):

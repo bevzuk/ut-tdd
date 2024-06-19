@@ -5,12 +5,9 @@ from app.Exceptions.invalid_operation_exception import InvalidOperationException
 
 
 @pytest.fixture
-def setup_player_with_10_chips_in_game():
-    game = RollDiceGame()
-    player = Player()
-    player.buy(Chip(10))
-    player.join(game)
-    return player, game
+def setup_player_with_10_chips_in_game(game, player_with_10_chips):
+    player_with_10_chips.join(game)
+    return player_with_10_chips, game
 
 def test_player_can_bet_enough_chips(setup_player_with_10_chips_in_game):
     player, game = setup_player_with_10_chips_in_game
