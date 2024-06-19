@@ -39,3 +39,6 @@ class Player:
 
     def win(self, chips: Chip):
         self._available_chips += chips
+
+    def get_chips_balance(self):
+        return self._available_chips

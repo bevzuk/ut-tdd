@@ -1,5 +1,7 @@
+import unittest.mock
 import pytest
 from app import Bet, Chip, Dice, RollDiceGame, Player
+import unittest
 
 
 @pytest.fixture(scope='function')
@@ -88,3 +90,23 @@ def test_player_cannot_place_bet_if_not_enough_chips(player_in_game):
 
     with pytest.raises(BaseException):
         game.bet(player, bet)
+
+
+def test_player_actually_win(player_in_game):
+    Dice.roll = unittest.mock.MagicMock(return_value=1)
+    player, game = player_in_game
+    player.buy(Chip(20))
+    game.bet(player, Bet(Chip(20), 1))
+    game.play()
+
+    assert player.get_chips_balance() == Chip(120)
+
+
+def test_player_actually_lose(player_in_game):
+    Dice.roll = unittest.mock.MagicMock(return_value=1)
+    player, game = player_in_game
+    player.buy(Chip(20))
+    game.bet(player, Bet(Chip(20), 2))
+    game.play()
+
+    assert player.get_chips_balance() == Chip(0)
